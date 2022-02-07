@@ -1,31 +1,31 @@
+import { mountAboutPageDOMElement } from './pages/about';
+import { mountDictionaryPageDOMElement } from './pages/dictionary';
+import { mountGamesPageDOMElement } from './pages/games';
+import { mountHomePageDOMElement } from './pages/home';
+import { mountSchoolbookPageDOMElement } from './pages/schoolbook';
+import { mountStatisticsPageDOMElement } from './pages/statistics';
+
+import { mountNavigationDOMElement } from './components/navigation';
+
 import { urlParser } from './utilities/urlParser';
-import { mountDOMElement } from './utilities/renderMarkup';
-
-import { navigationMarkup } from './components/navigation';
-import { homePageMarkup } from './pages/home';
-import { schoolbookPageMarkup } from './pages/schoolbook';
-import { dictionaryPageMarkup } from './pages/dictionary';
-import { gamesPageMarkup } from './pages/games';
-import { statisticsPageMarkup } from './pages/statistics';
-import { aboutPageMarkup } from './pages/about';
-
-import { pagesHash, pageWrapperId, sidebarWrapperId } from './config';
 
 import { IRoute } from './interfaces';
+
+import { pagesHash, pageWrapperId, sidebarWrapperId } from './config';
 
 const pageWrapperDOMElement = document.getElementById(pageWrapperId) as HTMLElement;
 const sidebarWrapperDOMElement = document.getElementById(sidebarWrapperId) as HTMLElement;
 
 const routes: IRoute = {
-  [pagesHash.home]: () => mountDOMElement(pageWrapperDOMElement, homePageMarkup),
-  [pagesHash.schoolbook]: () => mountDOMElement(pageWrapperDOMElement, schoolbookPageMarkup),
-  [pagesHash.dictionary]: () => mountDOMElement(pageWrapperDOMElement, dictionaryPageMarkup),
-  [pagesHash.games]: () => mountDOMElement(pageWrapperDOMElement, gamesPageMarkup),
-  [pagesHash.statistics]: () => mountDOMElement(pageWrapperDOMElement, statisticsPageMarkup),
-  [pagesHash.about]: () => mountDOMElement(pageWrapperDOMElement, aboutPageMarkup),
+  [pagesHash.home]: () => mountHomePageDOMElement(pageWrapperDOMElement),
+  [pagesHash.schoolbook]: () => mountSchoolbookPageDOMElement(pageWrapperDOMElement),
+  [pagesHash.dictionary]: () => mountDictionaryPageDOMElement(pageWrapperDOMElement),
+  [pagesHash.games]: () => mountGamesPageDOMElement(pageWrapperDOMElement),
+  [pagesHash.statistics]: () => mountStatisticsPageDOMElement(pageWrapperDOMElement),
+  [pagesHash.about]: () => mountAboutPageDOMElement(pageWrapperDOMElement),
 };
 
-sidebarWrapperDOMElement.innerHTML = navigationMarkup;
+mountNavigationDOMElement(sidebarWrapperDOMElement);
 
 const router = (): void => {
   const request = urlParser.parseRequestURL();

@@ -1,8 +1,6 @@
-import { pageClassName } from '../config';
-import { statisticsPageId } from './config';
+import { renderMarkup } from '../../utilities/renderMarkup';
+import { statisticsPageMarkup } from './markup';
 
-import './index.scss';
-
-export const statisticsPageMarkup = `
-  <section id="${statisticsPageId}" class="${pageClassName}">statistics</section>
-`;
+export const mountStatisticsPageDOMElement = (parentDOMElement: HTMLElement) => {
+  renderMarkup(parentDOMElement, statisticsPageMarkup);
+};

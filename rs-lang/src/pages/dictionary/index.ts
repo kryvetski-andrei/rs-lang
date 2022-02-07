@@ -1,8 +1,6 @@
-import { pageClassName } from '../config';
-import { dictionaryPageId } from './config';
+import { renderMarkup } from '../../utilities/renderMarkup';
+import { dictionaryPageMarkup } from './markup';
 
-import './index.scss';
-
-export const dictionaryPageMarkup = `
-  <section id="${dictionaryPageId}" class="${pageClassName}">dictionary</section>
-`;
+export const mountDictionaryPageDOMElement = (parentDOMElement: HTMLElement) => {
+  renderMarkup(parentDOMElement, dictionaryPageMarkup);
+};

@@ -1,8 +1,6 @@
-import { pageClassName } from '../config';
-import { gamesPageId } from './config';
+import { renderMarkup } from '../../utilities/renderMarkup';
+import { gamesPageMarkup } from './markup';
 
-import './index.scss';
-
-export const gamesPageMarkup = `
-  <section id="${gamesPageId}" class="${pageClassName}">games</section>
-`;
+export const mountGamesPageDOMElement = (parentDOMElement: HTMLElement) => {
+  renderMarkup(parentDOMElement, gamesPageMarkup);
+};

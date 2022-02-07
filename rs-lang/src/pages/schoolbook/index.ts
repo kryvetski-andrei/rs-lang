@@ -1,8 +1,6 @@
-import { pageClassName } from '../config';
-import { schoolbookPageId } from './config';
+import { renderMarkup } from '../../utilities/renderMarkup';
+import { schoolbookPageMarkup } from './markup';
 
-import './index.scss';
-
-export const schoolbookPageMarkup = `
-  <section id="${schoolbookPageId}" class="${pageClassName}">schoolbook</section>
-`;
+export const mountSchoolbookPageDOMElement = (parentDOMElement: HTMLElement) => {
+  renderMarkup(parentDOMElement, schoolbookPageMarkup);
+};

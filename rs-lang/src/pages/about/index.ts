@@ -1,8 +1,6 @@
-import { pageClassName } from '../config';
-import { aboutPageId } from './config';
+import { renderMarkup } from '../../utilities/renderMarkup';
+import { aboutPageMarkup } from './markup';
 
-import './index.scss';
-
-export const aboutPageMarkup = `
-  <section id="${aboutPageId}" class="${pageClassName}">about</section>
-`;
+export const mountAboutPageDOMElement = (parentDOMElement: HTMLElement) => {
+  renderMarkup(parentDOMElement, aboutPageMarkup);
+};

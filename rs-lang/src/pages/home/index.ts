@@ -1,8 +1,6 @@
-import { pageClassName } from '../config';
-import { homePageId } from './config';
+import { renderMarkup } from '../../utilities/renderMarkup';
+import { homePageMarkup } from './markup';
 
-import './index.scss';
-
-export const homePageMarkup = `
-  <section id="${homePageId}" class="${pageClassName}">home</section>
-`;
+export const mountHomePageDOMElement = (parentDOMElement: HTMLElement) => {
+  renderMarkup(parentDOMElement, homePageMarkup);
+};

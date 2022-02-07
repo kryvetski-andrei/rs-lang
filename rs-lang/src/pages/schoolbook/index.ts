@@ -1,7 +1,7 @@
 import { pageClassName } from '../config';
 import { schoolbookPageId } from './config';
 
-import './index.css';
+import './index.scss';
 
 export const schoolbookPageMarkup = `
   <section id="${schoolbookPageId}" class="${pageClassName}">schoolbook</section>

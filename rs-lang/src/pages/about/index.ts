@@ -1,7 +1,7 @@
 import { pageClassName } from '../config';
 import { aboutPageId } from './config';
 
-import './index.css';
+import './index.scss';
 
 export const aboutPageMarkup = `
   <section id="${aboutPageId}" class="${pageClassName}">about</section>

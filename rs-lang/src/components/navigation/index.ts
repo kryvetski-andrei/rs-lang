@@ -9,12 +9,13 @@ import {
   profileClassName,
   profileIcon,
   logoClassName,
+  navClassName,
 } from './config';
 
-import './index.css';
+import './index.scss';
 
 export const navigationMarkup = `
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 230px; height: 100vh">
+  <div class="${navClassName} d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 230px; height: 100vh">
     <a class="${logoClassName} text-white" href="#${pagesHash.home}">
       <h1>RS LANG</h1>
     </a>

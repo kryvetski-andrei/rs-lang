@@ -10,4 +10,5 @@ export const pagesHash = {
   games: '/games',
   statistics: '/statistics',
   about: '/about',
+  registration: '/registration',
 };

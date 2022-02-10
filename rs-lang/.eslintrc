@@ -18,6 +18,8 @@
   },
   "rules": {
     "import/prefer-default-export": "off",
-    "no-restricted-globals": "off"
+    "no-restricted-globals": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "consistent-return": "off"
   }
 }

@@ -4,6 +4,7 @@ import { mountGamesPageDOMElement } from './pages/games';
 import { mountHomePageDOMElement } from './pages/home';
 import { mountSchoolbookPageDOMElement } from './pages/schoolbook';
 import { mountStatisticsPageDOMElement } from './pages/statistics';
+import { mountRegistrationPageDOMElement } from './pages/registration';
 
 import { mountNavigationDOMElement } from './components/navigation';
 
@@ -23,6 +24,7 @@ const routes: IRoute = {
   [pagesHash.games]: () => mountGamesPageDOMElement(pageWrapperDOMElement),
   [pagesHash.statistics]: () => mountStatisticsPageDOMElement(pageWrapperDOMElement),
   [pagesHash.about]: () => mountAboutPageDOMElement(pageWrapperDOMElement),
+  [pagesHash.registration]: () => mountRegistrationPageDOMElement(pageWrapperDOMElement),
 };
 
 mountNavigationDOMElement(sidebarWrapperDOMElement);

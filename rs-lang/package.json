@@ -5,8 +5,7 @@
   "scripts": {
     "start": "webpack serve --env development",
     "build": "webpack",
-    "lint": "eslint ./src --ext .ts",
-    "prepare": "cd .. && husky install rs-lang/.husky"
+    "lint": "eslint ./src --ext .ts"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.10.2",

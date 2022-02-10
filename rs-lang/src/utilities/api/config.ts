@@ -9,6 +9,6 @@ export const signin = 'signin';
 
 export const wordsPath = `${apiBaseURL}/${words}`;
 export const usersPath = `${apiBaseURL}/${users}`;
-export const signinPath = `${apiBaseURL}/${signin}}`;
+export const signinPath = `${apiBaseURL}/${signin}`;
 
 export const userDataLocalStorage = 'userData';

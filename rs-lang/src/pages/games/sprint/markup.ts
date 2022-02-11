@@ -1,8 +1,9 @@
 import { pageClassName } from '../../config';
-import { sprintPageId } from './config';
+import { answersContainer, scoreClassName, sprintPageId, timerClassName, wordTranslation } from './config';
 import { gamePageClassName } from '../config';
 
 import '../index.scss';
+import './index.scss';
 
 export const sprintPageMarkup = `
   <section id="${sprintPageId}" class="${pageClassName} ${gamePageClassName}">
@@ -21,3 +22,13 @@ export const sprintPageMarkup = `
     <button class="start-game">Начать</button>
   </section>
 `;
+
+export const sprintGameMarkup = `
+  <div class="${timerClassName}">30</div>
+  <div class="${scoreClassName}">Score: 0</div>
+  <div class="${wordTranslation}">Слово - перевод</div>
+  <div class="${answersContainer}">
+    <button class="false">Неверно</button>
+    <button class="true">Верно</button>
+  </div>
+`

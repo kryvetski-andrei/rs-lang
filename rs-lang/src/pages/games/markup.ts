@@ -5,7 +5,7 @@ import './index.scss';
 
 export const gamesPageMarkup = `
   <section id="${gamesPageId}" class="${pageClassName}">
-    <a class="game-button" href="#/games/sprint">
+    <a class="game-button" href="#/sprint">
       <p>Спринт</p>
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="180" height="180" id="Layer_1" viewBox="0 0 512.161 512.161" style="enable-background:new 0 0 512.161 512.161;" xml:space="preserve">
           <g transform="translate(-1)">
@@ -14,7 +14,7 @@ export const gamesPageMarkup = `
           </g>
         </svg>
     </a>
-    <a class="game-button" href="#/games/audio-call">
+    <a class="game-button" href="#/audio-call">
       <p>Аудиовызов</p>
         <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="180" height="180" viewBox="0 0 75 75">
           <path d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#111;stroke-width:5;stroke-linejoin:round;fill:#111;"/>

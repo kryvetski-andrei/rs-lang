@@ -12,4 +12,5 @@ export const pagesHash = {
   about: '/about',
   registration: '/registration',
   sprint: '/sprint',
+  audioCall: '/audio-call',
 };

@@ -1,6 +1,7 @@
 import { mountAboutPageDOMElement } from './pages/about';
 import { mountDictionaryPageDOMElement } from './pages/dictionary';
 import { mountGamesPageDOMElement } from './pages/games';
+import { mountAudioCallPageDOMElement } from './pages/games/audio-сall';
 import { mountSprintPageDOMElement } from './pages/games/sprint';
 import { mountHomePageDOMElement } from './pages/home';
 import { mountSchoolbookPageDOMElement } from './pages/schoolbook';
@@ -27,6 +28,7 @@ const routes: IRoute = {
   [pagesHash.about]: () => mountAboutPageDOMElement(pageWrapperDOMElement),
   [pagesHash.registration]: () => mountRegistrationPageDOMElement(pageWrapperDOMElement),
   [pagesHash.sprint]: () => mountSprintPageDOMElement(pageWrapperDOMElement),
+  [pagesHash.audioCall]: () => mountAudioCallPageDOMElement(pageWrapperDOMElement),
 };
 
 mountNavigationDOMElement(sidebarWrapperDOMElement);

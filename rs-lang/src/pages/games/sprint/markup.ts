@@ -1,10 +1,11 @@
 import { pageClassName } from '../../config';
 import { sprintPageId } from './config';
+import { gamePageClassName } from '../config';
 
-import './index.scss';
+import '../index.scss';
 
 export const sprintPageMarkup = `
-  <section id="${sprintPageId}" class="${pageClassName}">
+  <section id="${sprintPageId}" class="${pageClassName} ${gamePageClassName}">
     <h2 class="game-title">Спринт</h2>
     <p class="game-description">Спринт - это игра, в которой вам будет отображаться пара слово-перевод, а вы должны будете указывать: верный перевод или неверный. Игра на скорость, и на неё вам дается 30 секунд!</p>
     <p class="game-description">Выбирать варианты ответа можно как и нажатием на кнопки "Верно"/"Неверно", так и нажатием клавишь стрелок</p>

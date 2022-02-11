@@ -1,6 +1,6 @@
 import { renderMarkup } from '../../../utilities/renderMarkup';
-import { gamesPageMarkup } from './markup';
+import { audioCallPageMarkup } from './markup';
 
 export const mountAudioCallPageDOMElement = (parentDOMElement: HTMLElement) => {
-  renderMarkup(parentDOMElement, gamesPageMarkup);
+  renderMarkup(parentDOMElement, audioCallPageMarkup);
 };

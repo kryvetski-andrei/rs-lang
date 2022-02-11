@@ -3,6 +3,6 @@ import { audioCallPageId } from './config';
 
 import './index.scss';
 
-export const gamesPageMarkup = `
+export const audioCallPageMarkup = `
   <section id="${audioCallPageId}" class="${pageClassName}">Audio-Call</section>
 `;

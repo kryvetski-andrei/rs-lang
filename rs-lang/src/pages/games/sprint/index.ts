@@ -1,6 +1,6 @@
 import { renderMarkup } from '../../../utilities/renderMarkup';
-import { gamesPageMarkup } from './markup';
+import { sprintPageMarkup } from './markup';
 
 export const mountSprintPageDOMElement = (parentDOMElement: HTMLElement) => {
-  renderMarkup(parentDOMElement, gamesPageMarkup);
+  renderMarkup(parentDOMElement, sprintPageMarkup);
 };

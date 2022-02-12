@@ -1,0 +1,1 @@
+export const maxCountWordsForPage = 30;

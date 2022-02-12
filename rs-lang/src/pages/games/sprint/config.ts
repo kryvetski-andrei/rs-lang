@@ -5,3 +5,4 @@ export const wordTranslation = 'word-translate-container';
 export const answersContainer = 'answer-buttons';
 export const timerDuration = 30000;
 export const timerInterval = 1000;
+export const maxWordsCount = 20;

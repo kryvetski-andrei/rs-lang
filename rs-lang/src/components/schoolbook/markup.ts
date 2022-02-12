@@ -1,6 +1,7 @@
 import { IWord } from "../../interfaces";
 import { appState } from "../../pages/schoolbook/config";
 import { apiBaseURL } from "../../utilities/api/config";
+import { maxCountWordsForPage } from "../config";
 
 
 export const wrapOfBook = `
@@ -19,7 +20,7 @@ export const wrapOfBook = `
 </div>
 <div class="pagination-book">
          <button class="button prev-button" id="prevPageBook" disabled >‹ prev</button>
-         <p class="number-page">${appState.numberPageOfSchoolbook + 1} / 30</p>
+         <p class="number-page">${appState.numberPageOfSchoolbook + 1} / ${maxCountWordsForPage}</p>
          <button class="button next-button" id="nextPageBook">next ›</button>
 </div>
 `;

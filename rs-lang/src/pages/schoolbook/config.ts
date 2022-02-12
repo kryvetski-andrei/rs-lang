@@ -1,3 +1,5 @@
+import { groupOfSchoolbookLocalStorage, pageOfBookLocalStorage } from "../../components/config";
+
 export const schoolbookPageId = 'schoolbook';
 
 export const boxCardsIdName = 'cards-block';
@@ -6,12 +8,12 @@ export const prevPageOfBookClassName = '.prev-button';
 export const nextPageOfBookClassName = '.next-button';
 export const paginationClassName = '.number-page';
 
-export type Data = {
+export type DataBook = {
   numberPageOfSchoolbook: number;
   groupOfSchoolbook: number;
 };
 
-export const appState: Data = {
-  numberPageOfSchoolbook: 0,
-  groupOfSchoolbook: 0,
+export const appState: DataBook = {
+  numberPageOfSchoolbook: JSON.parse(localStorage.getItem(`${pageOfBookLocalStorage}`)!),
+  groupOfSchoolbook: JSON.parse(localStorage.getItem(`${groupOfSchoolbookLocalStorage}`)!)
 };

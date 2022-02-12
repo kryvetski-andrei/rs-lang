@@ -27,8 +27,8 @@
 
 .learn-button {
   background-image: url(../../assets/graduation_cap_icon.svg);
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   background-size:contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -39,8 +39,19 @@
 
 .difficult-button {
   background-image: url(../../assets/star_icon_128523.svg);
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  background-size: 20px;
+}
+
+.statistic-button {
+  background-image: url(../../assets/darts-icon.svg);
+  width: 35px;
+  height: 35px;
   background-size:contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -48,7 +59,6 @@
   background-size: 20px;
   display: inline-block; /* Строчно-блочный элемент */
   position: relative;
-
 }
 
 .studied {
@@ -64,7 +74,9 @@
 }
 
 .area-learn-difficult{
-  padding-top: 15px;
+  padding-top: 12px;
+  display: inline-flex;
+  flex-direction: column;
 }
 
 .audio-button{
@@ -131,11 +143,12 @@
   background:  var(--light-green-color)
 }
 
-.form {
+.forms {
   margin-bottom: 10px;
+  margin-left: 20px;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content:space-between;
 }
 
 .unit-controls{
@@ -194,7 +207,6 @@
   backdrop-filter: blur(70px);
 }
 
-
 .button {
   font-size: 10px;
   background: var(--smoke) ;
@@ -215,4 +227,34 @@
 
 .button-active {
   background: var(--voodoo);
+}
+
+.hidden{
+  display: none;
+}
+
+.audio-game,
+.sprint-game {
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 10px ;
+  margin-right: 10px ; 
+  border: 3px solid var(--tundora);
+  transition: .3s;
+}
+
+.audio-game{
+  background-image: url(../../assets/headphone.svg);
+  background-size:30px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.sprint-game{
+  background-image: url(../../assets/sports.svg);
+  background-size:30px;
+  background-repeat: no-repeat;
+  background-position: center;
 }

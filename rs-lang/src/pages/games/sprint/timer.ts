@@ -10,6 +10,7 @@ const changeTimer = () => {
 const stopTimer = (intervalID: NodeJS.Timer) => {
     setTimeout(() => {
         clearInterval(intervalID)
+        secondsCount = 29;
       }, timerDuration)  
 }
 

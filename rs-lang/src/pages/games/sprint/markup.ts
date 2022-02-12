@@ -1,5 +1,5 @@
 import { pageClassName } from '../../config';
-import { answersContainer, scoreClassName, sprintPageId, timerClassName, wordTranslation } from './config';
+import { answersContainer, resultNavigationButtons, playAgainButtonClassName, rightAnswersContainer, scoreClassName, sprintPageId, timerClassName, toSchoolbookButtonClassName, wordTranslation, wrongAnswersContainer } from './config';
 import { gamePageClassName } from '../config';
 import { unitСheckbox } from '../config';
 
@@ -23,6 +23,23 @@ export const sprintPageMarkup = `
     <button class="start-game">Начать</button>
   </section>
 `;
+
+export const resultsMarkup = `
+<div class="results-viewer">
+  <div class="results-container">
+    <p class="right">Верно</p>
+    <ul class="${rightAnswersContainer}">
+    </ul>
+    <p class="wrong">Неверно</p>
+    <ul class="${wrongAnswersContainer}">
+    </ul>
+  </div>
+  <div class="${resultNavigationButtons}">
+    <a class="${toSchoolbookButtonClassName}" href="/#/schoolbook">В учебник</a>
+    <a class="${playAgainButtonClassName}" href="/#/games">Еще раз</a>
+  </div>
+</div>
+`
 
 export const sprintGameMarkup = `
   <div class="${timerClassName}">30</div>

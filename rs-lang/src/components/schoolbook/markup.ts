@@ -14,6 +14,10 @@ export const wrapOfBook = `
         <button class="unit-5 unit-button" title="Unit 5" data="4">5</button>
         <button class="unit-6 unit-button" title="Unit 6" data="5">6</button>
     </div>
+    <div class="game-controls">
+        <button class="audio-game" title="audio-game"></button>
+        <button class="sprint-game" title="sprint-game"></button>
+    </div>
 </div>
 <div class="cards-wrap" id="cards-block">  
 </div>
@@ -40,9 +44,10 @@ export const cardOfBook = (el: IWord, numericOfUnit: string) => `
                 <div class="word-meaning">${el.textMeaningTranslate}</div>
                 <div class="word-example">${el.textExampleTranslate}</div>
             </div>
-            <div class="area-learn-difficult">
+            <div class="area-learn-difficult hidden">
                 <button class="learn-button learn-button-${el.word}" title="Изученное" data-name-button = "Studied"></button>
                 <button class="difficult-button difficult-button-${el.word}" title="Сложное" data-name-button = "Heavy"></button>
+                <button class="statistic-button statistic-button-${el.word}" title="Статистика" data-name-button = "Statistic"></button>
             </div>
 
         </div>

@@ -1,5 +1,5 @@
-import { appState, unitsClassName } from "../../pages/schoolbook/config";
-import { rerenderPageOfBook } from "./switchPage";
+import { appState, unitsClassName } from '../../pages/schoolbook/config';
+import { rerenderPageOfBook } from './switchPage';
 
 export const switchUnitsOfBook = () => {
   document.body.addEventListener('click', (e: Event) => {
@@ -12,4 +12,3 @@ export const switchUnitsOfBook = () => {
     }
   });
 };
-  

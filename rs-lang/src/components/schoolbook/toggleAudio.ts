@@ -1,6 +1,6 @@
 // import { baseLangUrl } from './API/getWords';
 
-import { apiBaseURL } from "../../utilities/api/config";
+import { apiBaseURL } from '../../utilities/api/config';
 
 const audio = new Audio();
 let wasPlayed = false;
@@ -13,7 +13,7 @@ function toggleAudio(link: string, linkMeaning: string, linkExample: string) {
     audio.load();
     audio.play();
     let i = 1;
-    audio.addEventListener('ended', function () {
+    audio.addEventListener('ended', function check() {
       if (i < audioArray.length) {
         audio.src = audioArray[i];
         audio.load();

@@ -1,11 +1,10 @@
-import { groupOfSchoolbookLocalStorage, pageOfBookLocalStorage } from '../../components/config';
 import { mountWrapBookDOMElement } from '../../components/schoolbook';
 import { createCardsOfBook } from '../../components/schoolbook/createCardsOfWord';
 import { addPagesAndUnitsLocalStorage } from '../../components/schoolbook/localStorageOfBook';
 import { switchPageOfBook, updateStatePageOfBook } from '../../components/schoolbook/switchPage';
 import { switchUnitsOfBook } from '../../components/schoolbook/switchUnits';
 import { renderMarkup } from '../../utilities/renderMarkup';
-import { appState, schoolbookPageId } from './config';
+import { schoolbookPageId } from './config';
 import { schoolbookPageMarkup } from './markup';
 
 export const mountSchoolbookPageDOMElement = (parentDOMElement: HTMLElement) => {

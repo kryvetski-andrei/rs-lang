@@ -1,4 +1,4 @@
-import toggleAudio from "./toggleAudio";
+import toggleAudio from './toggleAudio';
 
 export const switchAudio = (word: string) => {
   document.querySelector(`.audio-button-${word}`)?.addEventListener('click', (e: Event) => {
@@ -21,4 +21,3 @@ export const switchAudio = (word: string) => {
     target.classList.toggle('difficult');
   });
 };
-  

@@ -1,7 +1,6 @@
-import { rerenderPagination } from ".";
-import { appState, nextPageOfBookClassName, prevPageOfBookClassName } from "../../pages/schoolbook/config";
-import { createCardsOfBook } from "./createCardsOfWord";
-
+import { rerenderPagination } from '.';
+import { appState, nextPageOfBookClassName, prevPageOfBookClassName } from '../../pages/schoolbook/config';
+import { createCardsOfBook } from './createCardsOfWord';
 
 export const updateStatePageOfBook = async () => {
   const cardsPage = appState.numberPageOfSchoolbook + 1;
@@ -24,22 +23,21 @@ export const updateStatePageOfBook = async () => {
     (document.querySelector(nextPageOfBookClassName) as HTMLButtonElement).disabled = false;
   }
 };
-  
+
 export const rerenderPageOfBook = () => {
   createCardsOfBook();
   rerenderPagination();
   updateStatePageOfBook();
 };
-  
+
 export const switchPageOfBook = () => {
   document.querySelector(nextPageOfBookClassName)?.addEventListener('click', () => {
     appState.numberPageOfSchoolbook += 1;
     rerenderPageOfBook();
   });
-  
+
   document.querySelector(prevPageOfBookClassName)?.addEventListener('click', () => {
     appState.numberPageOfSchoolbook -= 1;
     rerenderPageOfBook();
   });
 };
-  

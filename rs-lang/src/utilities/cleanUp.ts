@@ -1,4 +1,3 @@
 export const cleanUp = (parentDOMElement: HTMLElement) => {
-  parentDOMElement.innerHTML = '';
+  parentDOMElement.innerHTML = ''; // eslint-disable-line no-param-reassign
 };
-  

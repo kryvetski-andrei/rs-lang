@@ -1,8 +1,7 @@
-import { IWord } from "../../interfaces";
-import { appState } from "../../pages/schoolbook/config";
-import { apiBaseURL } from "../../utilities/api/config";
-import { maxCountWordsForPage } from "../config";
-
+import { IWord } from '../../interfaces';
+import { appState } from '../../pages/schoolbook/config';
+import { apiBaseURL } from '../../utilities/api/config';
+import { maxCountWordsForPage } from '../config';
 
 export const wrapOfBook = `
 <div class="forms">

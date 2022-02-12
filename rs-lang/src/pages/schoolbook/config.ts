@@ -1,4 +1,4 @@
-import { groupOfSchoolbookLocalStorage, pageOfBookLocalStorage } from "../../components/config";
+import { groupOfSchoolbookLocalStorage, pageOfBookLocalStorage } from '../../components/config';
 
 export const schoolbookPageId = 'schoolbook';
 
@@ -15,5 +15,5 @@ export type DataBook = {
 
 export const appState: DataBook = {
   numberPageOfSchoolbook: JSON.parse(localStorage.getItem(`${pageOfBookLocalStorage}`)!),
-  groupOfSchoolbook: JSON.parse(localStorage.getItem(`${groupOfSchoolbookLocalStorage}`)!)
+  groupOfSchoolbook: JSON.parse(localStorage.getItem(`${groupOfSchoolbookLocalStorage}`)!),
 };

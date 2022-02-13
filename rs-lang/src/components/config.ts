@@ -6,3 +6,6 @@ export const groupOfSchoolbookLocalStorage = 'groupOfBook';
 export const studiedClassName='studied';
 export const difficultClassName='difficult';
 export const hiddenClassName= 'hidden';
+export const markOfLearnedWord= 'learn';
+export const markOfDifficultWord= 'hard';
+export const markOfNot = 'no';

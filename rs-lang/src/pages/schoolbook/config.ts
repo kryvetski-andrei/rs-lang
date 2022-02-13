@@ -7,6 +7,7 @@ export const unitsClassName = 'unit-button';
 export const prevPageOfBookClassName = '.prev-button';
 export const nextPageOfBookClassName = '.next-button';
 export const paginationClassName = '.number-page';
+export const learnDifficultStatisticBlockClassName = '.area-learn-difficult';
 
 export type DataBook = {
   numberPageOfSchoolbook: number;

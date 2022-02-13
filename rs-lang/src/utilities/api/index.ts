@@ -216,7 +216,7 @@ export const deleteUserWord = async (id: string, wordId: string) => {
     await deleteUser(id);
     return;
   }
-
-  const userWordData = await response.json();
-  return userWordData;
+  
+  // const userWordData = await response.json();
+  // return userWordData;
 };

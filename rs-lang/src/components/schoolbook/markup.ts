@@ -27,26 +27,26 @@ export const wrapOfBook = `
   </div>
 `;
 
-export const cardOfBook = (el: IWord, numericOfUnit: string) => `
-  <div class="card-book" id="${el.id}" data-name="${el.word}">
+export const cardOfBook = (wordData: IWord, numericOfUnit: string) => `
+  <div class="card-book" id="${wordData.id}" data-name="${wordData.word}">
     <div class="line unit-${numericOfUnit}"></div>
-    <img src="${apiBaseURL}/${el.image}" class="image" width="195" height="130">
+    <img src="${apiBaseURL}/${wordData.image}" class="image" width="195" height="130">
     <div class="english-words">
-      <div class="word">${el.word} ${el.transcription} 
-      <button class="audio-button audio-button-${el.word} " data-audio="${el.audio}" id="audioId"></button>
+      <div class="word">${wordData.word} ${wordData.transcription} 
+      <button class="audio-button audio-button-${wordData.word} " data-audio="${wordData.audio}" id="audioId"></button>
       </div>
-      <div class="word-meaning">${el.textMeaning}</div>
-      <div class="word-example">${el.textExample}</div>
+      <div class="word-meaning">${wordData.textMeaning}</div>
+      <div class="word-example">${wordData.textExample}</div>
     </div>
     <div class="russian-words">
-      <div class="word"> ${el.wordTranslate} </div>
-      <div class="word-meaning">${el.textMeaningTranslate}</div>
-      <div class="word-example">${el.textExampleTranslate}</div>
+      <div class="word"> ${wordData.wordTranslate} </div>
+      <div class="word-meaning">${wordData.textMeaningTranslate}</div>
+      <div class="word-example">${wordData.textExampleTranslate}</div>
     </div>
-    <div class="area-learn-difficult hidden" id="area-${el.id}">
-      <button class="learn-button learn-button-${el.word}" title="Изученное" data-name-button = "Studied"></button>
-      <button class="difficult-button difficult-button-${el.word}" title="Сложное" data-name-button = "Heavy"></button>
-      <button class="statistic-button statistic-button-${el.word}" title="Статистика" data-name-button = "Statistic"></button>
+    <div class="area-learn-difficult hidden" id="area-${wordData.id}">
+      <button class="learn-button learn-button-${wordData.word}" title="Изученное" data-name-button = "Studied"></button>
+      <button class="difficult-button difficult-button-${wordData.word}" title="Сложное" data-name-button = "Heavy"></button>
+      <button class="statistic-button statistic-button-${wordData.word}" title="Статистика" data-name-button = "Statistic"></button>
     </div>
   </div>
 `;

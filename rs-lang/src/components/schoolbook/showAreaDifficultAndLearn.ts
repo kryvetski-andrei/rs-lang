@@ -22,24 +22,22 @@ export const showArea = async(word: string, idWord: string, idUser:string, array
         (document.body.querySelector(`.learn-button-${word}`))?.classList.add(studiedClassName);
         ((document.body.querySelector(`.difficult-button-${word}`)) as HTMLButtonElement).disabled = true;
       };
-
     }
   });
-
-  };
+};
  
 export const toggleLearnButton = (word: string, idWord: string, idUser: string) => {
   document.body.querySelector(`.learn-button-${word}`)?.addEventListener('click', async({target}) => {
     const learnButtonElement = target as HTMLButtonElement;
     if(learnButtonElement.classList.contains(studiedClassName)){
       learnButtonElement.classList.remove(studiedClassName);
-    await deleteUserWord(idUser, idWord);
-    (document.body.querySelector(`.difficult-button-${word}`) as HTMLButtonElement).disabled = false;
+      await deleteUserWord(idUser, idWord);
+      (document.body.querySelector(`.difficult-button-${word}`) as HTMLButtonElement).disabled = false;
     } else{
       learnButtonElement.classList.add(studiedClassName);
-    const learnOption = {difficulty: markOfNot, optional:{"learn":markOfLearnedWord, "word": word}}
-    await postUsersWords(idUser, idWord, learnOption);
-    (document.body.querySelector(`.difficult-button-${word}`) as HTMLButtonElement).disabled = true;
+      const learnOption = {difficulty: markOfNot, optional:{"learn":markOfLearnedWord, "word": word}}
+      await postUsersWords(idUser, idWord, learnOption);
+      (document.body.querySelector(`.difficult-button-${word}`) as HTMLButtonElement).disabled = true;
     }
   });
 }

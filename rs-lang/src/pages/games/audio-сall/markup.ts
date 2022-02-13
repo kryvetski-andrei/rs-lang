@@ -1,8 +1,10 @@
 import { pageClassName } from '../../config';
-import { audioCallPageId } from './config';
+import { audioCallPageId, playAudioIconClassName, rightanswerViewerClassName } from './config';
 import { gamePageClassName } from '../config';
-
+import { answersContainer } from '../config';
+import { audioIconSVG } from '../markup';
 import '../index.scss';
+import './index.scss';
 
 export const audioCallPageMarkup = `
   <section id="${audioCallPageId}" class="${pageClassName} ${gamePageClassName}">
@@ -21,3 +23,14 @@ export const audioCallPageMarkup = `
     <button class="start-game">Начать</button>
   </section>
 `;
+
+export const audioCallGameMarkup = `
+  <div class="${playAudioIconClassName}">${audioIconSVG}</div>
+  <div class="${rightanswerViewerClassName}">Test</div>
+  <div class="${answersContainer}">
+    <button class="variant true">Неверно</button>
+    <button class="variant false">Верно</button>
+    <button class="variant">Верно</button>
+    <button class="variant">Верно</button>
+  </div>
+`

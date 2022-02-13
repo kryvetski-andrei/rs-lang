@@ -1,3 +1,16 @@
 #audio-call{
-    background-color: rgb(39, 80, 167);
+    .play-audio{
+        cursor: pointer;
+    }
+    .right-answer-viewer{
+        font-family: monospace;
+        font-size: 22px;
+        height: 60px;
+        width: 100px;
+    }
+    .answer-buttons{
+        .variant{
+            border-color: rgb(169, 190, 47);
+        }
+    }
 }

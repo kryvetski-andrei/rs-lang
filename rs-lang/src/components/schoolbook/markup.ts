@@ -44,7 +44,7 @@ export const cardOfBook = (el: IWord, numericOfUnit: string) => `
                 <div class="word-meaning">${el.textMeaningTranslate}</div>
                 <div class="word-example">${el.textExampleTranslate}</div>
             </div>
-            <div class="area-learn-difficult hidden">
+            <div class="area-learn-difficult hidden" id="area-${el.id}">
                 <button class="learn-button learn-button-${el.word}" title="Изученное" data-name-button = "Studied"></button>
                 <button class="difficult-button difficult-button-${el.word}" title="Сложное" data-name-button = "Heavy"></button>
                 <button class="statistic-button statistic-button-${el.word}" title="Статистика" data-name-button = "Statistic"></button>

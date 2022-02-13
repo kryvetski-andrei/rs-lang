@@ -9,8 +9,8 @@ export const mountWrapBookDOMElement = (parentDOMElement: HTMLElement) => {
   renderMarkup(parentDOMElement, wrapOfBook);
 };
 
-export const mountCardOfBookDOMElement = (parentDOMElement: HTMLElement, el: IWord, numericOfUnit: string) => {
-  renderMarkup(parentDOMElement, cardOfBook(el, numericOfUnit));
+export const mountCardOfBookDOMElement = (parentDOMElement: HTMLElement, wordData: IWord, numericOfUnit: string) => {
+  renderMarkup(parentDOMElement, cardOfBook(wordData, numericOfUnit));
 };
 
 export const rerenderPagination = () => {

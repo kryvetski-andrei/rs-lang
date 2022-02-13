@@ -1,13 +1,12 @@
 import { renderMarkup } from '../../../utilities/renderMarkup';
-import { startGameButton, unitСheckbox } from '../config';
-import { resultsMarkup, sprintGameMarkup, sprintPageMarkup } from './markup';
-import { answersContainer, resultNavigationButtons, playAgainButtonClassName, rightAnswersContainer, sprintPageId, toSchoolbookButtonClassName, wordTranslation, wrongAnswersContainer, timerDuration } from './config';
+import { answersContainer, startGameButton, unitСheckbox } from '../config';
+import { sprintGameMarkup, sprintPageMarkup } from './markup';
+import { sprintPageId, timerDuration } from './config';
 import { setCountdown } from './timer';
 import { getWords } from '../../../utilities/api';
-import { IPair, IWord } from '../../../interfaces'
 import { generatePairs } from './getWordsPairs';
 import { showResults } from './endGame';
-import { setAnswer } from './gamePlay';
+import { setAnswer, showCurrentPair } from './gamePlay';
 
 
 
@@ -29,6 +28,7 @@ const startGame = async () => {
   renderMarkup(sprintContainer, sprintGameMarkup);
   setCountdown();
   const wordPairs = generatePairs(await getWords(0, getCurrentGroupOfWords()));
+  showCurrentPair(wordPairs);
   setTimeout(() => {
     showResults(wordPairs, sprintContainer);
   }, timerDuration)

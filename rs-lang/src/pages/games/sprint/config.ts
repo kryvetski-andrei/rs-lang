@@ -2,7 +2,6 @@ export const sprintPageId = 'sprint';
 export const timerClassName = 'timer';
 export const scoreClassName = 'score';
 export const wordTranslation = 'word-translate-container';
-export const answersContainer = 'answer-buttons';
 export const rightAnswersContainer = 'right-answers';
 export const wrongAnswersContainer = 'wrong-answers';
 export const resultNavigationButtons = 'result-navigation-buttons';

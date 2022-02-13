@@ -1,5 +1,6 @@
 import { rerenderPagination } from '.';
 import { appState, nextPageOfBookClassName, prevPageOfBookClassName } from '../../pages/schoolbook/config';
+import { MAX_NUMBER_OF_WORDS_PER_PAGE } from '../config';
 import { createCardsOfBook } from './createCardsOfWord';
 
 export const updateStatePageOfBook = async () => {
@@ -17,7 +18,7 @@ export const updateStatePageOfBook = async () => {
     (document.querySelector(prevPageOfBookClassName) as HTMLButtonElement).disabled = false;
   }
 
-  if (cardsPage === 30) {
+  if (cardsPage === MAX_NUMBER_OF_WORDS_PER_PAGE) {
     (document.querySelector(nextPageOfBookClassName) as HTMLButtonElement).disabled = true;
   } else {
     (document.querySelector(nextPageOfBookClassName) as HTMLButtonElement).disabled = false;

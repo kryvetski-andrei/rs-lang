@@ -1,5 +1,5 @@
 // delpyed server
-// export const apiBaseURL = 'https://rslang-kryvetski-andrei.herokuapp.com/'
+// export const apiBaseURL = 'https://rslang-kryvetski-andrei.herokuapp.com'
 
 export const apiBaseURL = 'http://localhost:3000';
 

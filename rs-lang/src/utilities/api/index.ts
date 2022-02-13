@@ -214,9 +214,8 @@ export const deleteUserWord = async (id: string, wordId: string) => {
   if (response.status === 401) {
     await getNewTokens(id);
     await deleteUser(id);
-    return;
   }
 
-  const userWordData = await response.json();
-  return userWordData;
+  // const userWordData = await response.json();
+  // return userWordData;
 };

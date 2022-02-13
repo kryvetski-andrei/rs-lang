@@ -1,3 +1,260 @@
+:root {
+  --disable: #555;
+  --light-smoke:#e6dfec;
+  --smoke:#9b8bab;
+  --rhino: #2b3462;
+  --voodoo: #4b3961;
+  --tundora:#4b4849;
+  --one: #cbb7db;
+  --two: #e68cd3;
+  --three: #af7fd6;
+  --four: #8a137a;
+  --five: #7d15d3;
+  --six: #1d2b66;
+}
+
 #schoolbook {
-  background-color: darkslateblue;
+  background-color: var(--light-smoke);
+}
+
+.card-book {
+  border: 3px solid white;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.learn-button {
+  background-image: url(../../assets/graduation_cap_icon.svg);
+  width: 35px;
+  height: 35px;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  display: inline-block; /* Строчно-блочный элемент */
+  position: relative;
+}
+
+.difficult-button {
+  background-image: url(../../assets/star_icon_128523.svg);
+  width: 35px;
+  height: 35px;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  background-size: 20px;
+}
+
+.statistic-button {
+  background-image: url(../../assets/darts-icon.svg);
+  width: 35px;
+  height: 35px;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  background-size: 20px;
+  display: inline-block; /* Строчно-блочный элемент */
+  position: relative;
+}
+
+.studied {
+  background-color: var(--smoke);
+}
+
+.difficult {
+  background-color: yellow;
+}
+
+.line{
+  width: 20px;
+}
+
+.area-learn-difficult{
+  padding-top: 12px;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.audio-button{
+  background-color:var(--one);
+  border-radius: 35px;
+  border: 1px solid white;
+  cursor: pointer;
+  text-decoration: none;
+  width: 28px;
+  height: 28px;
+  background-image: url(../../assets/audio.svg);
+  background-size:18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 2px;
+}
+
+.audio-button:hover,
+.audio-button:active{
+  background-color:var(--smoke);
+  border-radius: 35px;
+  border: 1px solid var(--tundora);
+  text-decoration: none;
+  
+}
+
+.english-words {
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 28vw;
+}
+
+.russian-words {
+  width: 34vw;
+  color: rgb(88, 86, 86);
+}
+
+.word,
+.word-example,
+.word-meaning{
+  padding-top: 15px;
+}
+
+.word{
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.word-example{
+  font-style:italic;
+}
+
+.page-book{
+  background-color: var(--light-smoke);
+  
+}
+
+.button:disabled {
+  background: var(--tundora);
+  cursor: not-allowed;
+}
+
+.generator-button {
+  background:  var(--light-green-color)
+}
+
+.forms {
+  margin-bottom: 10px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.unit-controls{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: start;
+  align-items: center;
+}
+
+.units-text{
+  font-size: 28px;
+}
+
+.unit-button {
+  font-size: 18px;
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 10px ;
+  margin-right: 10px ; 
+  color: var(--voodoo);
+  border: 3px solid var(--tundora);
+  transition: .3s;
+  color: white;
+}
+
+.unit-1 {
+  background-color: var(--one) ; 
+}
+.unit-2 {
+  background-color: var(--two) ; 
+}
+.unit-3 {
+  background-color: var(--three) ; 
+}
+.unit-4 {
+  background-color: var(--four) ; 
+}
+.unit-5 {
+  background-color: var(--five) ; 
+}
+.unit-6 {
+  background-color: var(--six) ; 
+}
+
+.pagination-book{
+  display: flex;
+  align-content: center;
+  position: sticky;
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  bottom: 0;
+  justify-content: center;
+  backdrop-filter: blur(70px);
+}
+
+.button {
+  font-size: 10px;
+  background: var(--smoke) ;
+  border-radius: 4px;
+  padding: 3px;
+  min-width: 100px;
+  height: 20px;
+  text-transform: uppercase;
+  margin-left: 10px ;
+  margin-right: 10px ;
+  color: white;
+  
+}
+
+.button:hover {
+  background: var(--rhino) ;
+}
+
+.button-active {
+  background: var(--voodoo);
+}
+
+.hidden{
+  display: none;
+}
+
+.audio-game,
+.sprint-game {
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 10px ;
+  margin-right: 10px ; 
+  border: 3px solid var(--tundora);
+  transition: .3s;
+}
+
+.audio-game{
+  background-image: url(../../assets/headphone.svg);
+  background-size:30px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.sprint-game{
+  background-image: url(../../assets/sports.svg);
+  background-size:30px;
+  background-repeat: no-repeat;
+  background-position: center;
 }

@@ -4,7 +4,7 @@ import { wordTranslation } from "./config";
 let currentPair = 0;
 
 
-const showCurrentPair = (wordPairs: Array<IPair>) => {
+export const showCurrentPair = (wordPairs: Array<IPair>) => {
   (document.body.querySelector(`.${wordTranslation}`) as HTMLElement).innerHTML = `${wordPairs[currentPair].wordsPair}`;
 }
 

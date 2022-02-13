@@ -1,6 +1,6 @@
 import { IUserWord } from "../../interfaces";
 import { deleteUserWord, postUsersWords } from "../../utilities/api";
-import { difficultClassName, hiddenClassName, studiedClassName } from "../config";
+import { difficultClassName, hiddenClassName, markOfDifficultWord, markOfLearnedWord, markOfNot, studiedClassName } from "../config";
 
 
 export const showArea = async(word: string, idWord: string, idUser:string, arrayOfUserWords:[IUserWord]) => {
@@ -12,14 +12,14 @@ export const showArea = async(word: string, idWord: string, idUser:string, array
   
   arrayOfUserWords.forEach((wordOfUser: IUserWord) => {
     if (wordOfUser.optional.word === word){
-      if (wordOfUser.difficulty ==='hard'){
-        (document.body.querySelector(`.difficult-button-${word}`))?.classList.add('difficult');
+      if (wordOfUser.difficulty ===markOfDifficultWord){
+        (document.body.querySelector(`.difficult-button-${word}`))?.classList.add(difficultClassName);
         ((document.body.querySelector(`.learn-button-${word}`)) as HTMLButtonElement).disabled = true;
         ((document.body.querySelector(`.difficult-button-${word}`)) as HTMLButtonElement).disabled = true;
       };
     
-      if (wordOfUser.optional.learn ==='learn'){
-        (document.body.querySelector(`.learn-button-${word}`))?.classList.add('studied');
+      if (wordOfUser.optional.learn === markOfLearnedWord){
+        (document.body.querySelector(`.learn-button-${word}`))?.classList.add(studiedClassName);
         ((document.body.querySelector(`.difficult-button-${word}`)) as HTMLButtonElement).disabled = true;
       };
 
@@ -29,15 +29,15 @@ export const showArea = async(word: string, idWord: string, idUser:string, array
   };
  
 export const toggleLearnButton = (word: string, idWord: string, idUser: string) => {
-  document.body.querySelector(`.learn-button-${word}`)?.addEventListener('click', async(e: Event) => {
-    const target = e.target as HTMLButtonElement;
-    if(target.classList.contains(studiedClassName)){
-    target.classList.remove(studiedClassName);
+  document.body.querySelector(`.learn-button-${word}`)?.addEventListener('click', async({target}) => {
+    const learnButtonElement = target as HTMLButtonElement;
+    if(learnButtonElement.classList.contains(studiedClassName)){
+      learnButtonElement.classList.remove(studiedClassName);
     await deleteUserWord(idUser, idWord);
     (document.body.querySelector(`.difficult-button-${word}`) as HTMLButtonElement).disabled = false;
     } else{
-    target.classList.add(studiedClassName);
-    let learnOption = {difficulty: "no", optional:{"learn":"learn", "word": word}}
+      learnButtonElement.classList.add(studiedClassName);
+    const learnOption = {difficulty: markOfNot, optional:{"learn":markOfLearnedWord, "word": word}}
     await postUsersWords(idUser, idWord, learnOption);
     (document.body.querySelector(`.difficult-button-${word}`) as HTMLButtonElement).disabled = true;
     }
@@ -45,12 +45,12 @@ export const toggleLearnButton = (word: string, idWord: string, idUser: string) 
 }
   
 export const toggleDifficultButton = (word: string, idWord: string, idUser: string) => {
-  document.body.querySelector(`.difficult-button-${word}`)?.addEventListener('click', async(e: Event) => {
-    const target = e.target as HTMLButtonElement;
-    target.classList.add(difficultClassName);
-    let difficultOption = {difficulty: "hard", optional:{"learn":"no", "word": word}}
+  document.body.querySelector(`.difficult-button-${word}`)?.addEventListener('click', async({target}) => {
+    const difficultButtonElement = target as HTMLButtonElement;
+    difficultButtonElement.classList.add(difficultClassName);
+    const difficultOption = {difficulty: markOfDifficultWord, optional:{"learn":markOfNot, "word": word}}
     await postUsersWords(idUser, idWord, difficultOption);
-    target.disabled = true;
+    difficultButtonElement.disabled = true;
     (document.body.querySelector(`.learn-button-${word}`) as HTMLButtonElement).disabled = true;
   });
 }

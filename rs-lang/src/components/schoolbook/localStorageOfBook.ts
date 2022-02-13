@@ -12,13 +12,13 @@ export const addUnitOfBookInLocalStorage = () => {
 };
 
 export const addPagesAndUnitsLocalStorage = () => {
-  if (localStorage.getItem(`${pageOfBookLocalStorage}`) !== null) {
+  if (localStorage.getItem(`${pageOfBookLocalStorage}`)) {
     addPageOfBookInLocalStorage();
   } else {
     appState.numberPageOfSchoolbook = 0;
   }
 
-  if (localStorage.getItem(`${groupOfSchoolbookLocalStorage}`) !== null) {
+  if (localStorage.getItem(`${groupOfSchoolbookLocalStorage}`)) {
     addUnitOfBookInLocalStorage();
   } else {
     appState.groupOfSchoolbook = 0;

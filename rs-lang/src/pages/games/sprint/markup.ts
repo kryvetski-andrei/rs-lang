@@ -1,6 +1,6 @@
 import { pageClassName } from '../../config';
-import { answersContainer, resultNavigationButtons, playAgainButtonClassName, rightAnswersContainer, scoreClassName, sprintPageId, timerClassName, toSchoolbookButtonClassName, wordTranslation, wrongAnswersContainer } from './config';
-import { gamePageClassName } from '../config';
+import { resultNavigationButtons, playAgainButtonClassName, rightAnswersContainer, scoreClassName, sprintPageId, timerClassName, toSchoolbookButtonClassName, wordTranslation, wrongAnswersContainer } from './config';
+import { answersContainer, gamePageClassName } from '../config';
 import { unitСheckbox } from '../config';
 
 import '../index.scss';

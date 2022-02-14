@@ -9,20 +9,6 @@ import { showResults } from './endGame';
 import { setAnswer, showCurrentPair } from './gamePlay';
 import { getCurrentGroupOfWords } from '../utils/getCurrentGroup';
 
-
-
-
-// const getCurrentGroupOfWords = (): number => {
-//   let groupIndex = 0;
-//   document.body.querySelectorAll(`.${unitСheckbox}`)?.forEach((elem, index) => {
-//     if((elem as HTMLInputElement).checked){
-//       groupIndex = index;
-//     }
-//   })
-//   return groupIndex;
-// }
-
-
 const startGame = async () => {
   const sprintContainer = document.body.querySelector(`#${sprintPageId}`) as HTMLElement;
   sprintContainer.innerHTML = '';

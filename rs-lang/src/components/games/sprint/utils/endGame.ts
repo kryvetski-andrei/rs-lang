@@ -1,7 +1,7 @@
-import { IPair, IAudioCallQuestion } from "../../../interfaces";
-import { renderMarkup } from "../../../utilities/renderMarkup";
-import { rightAnswersContainerClassName, wrongAnswersContainerClassName } from "./config";
-import { resultsMarkup } from "./markup";
+import { IPair, IAudioCallQuestion } from "../../../../interfaces";
+import { renderMarkup } from "../../../../utilities/renderMarkup";
+import { rightAnswersContainerClassName, wrongAnswersContainerClassName } from "../config";
+import { resultsMarkup } from "../markup";
 
 const pushVariantsToList = (wordPairs: Array<IPair | IAudioCallQuestion>, parentDOMElement: HTMLElement) => {
   const rightAnswersContainer = parentDOMElement.querySelector(`.${rightAnswersContainerClassName}`);

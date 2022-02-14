@@ -1,6 +1,6 @@
-import { IPair, IWord } from "../../../interfaces";
-import { shuffle } from "../utils/shuffle";
-import { getRandomTranslation } from "../utils/getRandomTranslation";
+import { IPair, IWord } from "../../../../interfaces";
+import { getRandomTranslation } from "../../utils/getRandomTranslation";
+import { shuffle } from "../../utils/shuffle";
 
 export const generatePairs = (wordsData: Array<IWord>): Array<IPair> => {
   const wordsPpairs: Array<IPair> = [];

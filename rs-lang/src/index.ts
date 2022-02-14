@@ -1,8 +1,8 @@
 import { mountAboutPageDOMElement } from './pages/about';
 import { mountDictionaryPageDOMElement } from './pages/dictionary';
 import { mountGamesPageDOMElement } from './pages/games';
-import { mountAudioCallPageDOMElement } from './pages/games/audio-сall';
-import { mountSprintPageDOMElement } from './pages/games/sprint';
+import { mountSprintPageDOMElement } from './components/games/sprint';
+import { mountAudioCallPageDOMElement } from './components/games/audio-сall';
 import { mountHomePageDOMElement } from './pages/home';
 import { mountSchoolbookPageDOMElement } from './pages/schoolbook';
 import { mountStatisticsPageDOMElement } from './pages/statistics';
@@ -15,6 +15,7 @@ import { urlParser } from './utilities/urlParser';
 import { IRoute } from './interfaces';
 
 import { pagesHash, pageWrapperId, sidebarWrapperId } from './config';
+
 
 const pageWrapperDOMElement = document.getElementById(pageWrapperId) as HTMLElement;
 const sidebarWrapperDOMElement = document.getElementById(sidebarWrapperId) as HTMLElement;

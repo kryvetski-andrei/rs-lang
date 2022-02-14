@@ -1,7 +1,7 @@
-import { IAudioCallQuestion, IWord } from "../../../interfaces";
-import { getFirstElementsOfArray } from "../utils/firstElements";
-import { shuffle } from "../utils/shuffle";
-import { QUESTIONS_COUNT, WRONG_VARIANTS_COUNT } from "./config";
+import { IAudioCallQuestion, IWord } from "../../../../interfaces";
+import { getFirstElementsOfArray } from "../../utils/firstElements";
+import { shuffle } from "../../utils/shuffle";
+import { QUESTIONS_COUNT, WRONG_VARIANTS_COUNT } from "../config";
 
 
 const getRandomvariants = (wordsData: Array<IWord>, rightAnswer: string, index: number): Array<string> => {

@@ -1,4 +1,4 @@
-import { TIMER_INTERVAL, timerClassName, TIMER_DURATION } from "./config";
+import { timerClassName, TIMER_DURATION, TIMER_INTERVAL } from "../config";
 
 let secondsCount = 29;
 

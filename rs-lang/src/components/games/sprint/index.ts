@@ -2,12 +2,12 @@ import { renderMarkup } from '../../../utilities/renderMarkup';
 import { answersContainer, startGameButton, unitСheckbox } from '../config';
 import { sprintGameMarkup, sprintPageMarkup } from './markup';
 import { sprintPageId, TIMER_DURATION } from './config';
-import { setCountdown } from './timer';
 import { getWords } from '../../../utilities/api';
-import { generatePairs } from './getWordsPairs';
-import { showResults } from './endGame';
-import { setAnswer, showCurrentPair } from './gamePlay';
+import { showResults } from './utils/endGame';
 import { getCurrentGroupOfWords } from '../utils/getCurrentGroup';
+import { setCountdown } from './utils/timer';
+import { generatePairs } from './utils/getWordsPairs';
+import { setAnswer, showCurrentPair } from './utils/gamePlay';
 
 const startGame = async () => {
   const sprintContainer = document.body.querySelector(`#${sprintPageId}`) as HTMLElement;

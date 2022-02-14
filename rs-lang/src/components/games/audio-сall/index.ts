@@ -2,14 +2,14 @@ import { IAudioCallQuestion } from '../../../interfaces';
 import { getWords } from '../../../utilities/api';
 import { renderMarkup } from '../../../utilities/renderMarkup';
 import { answersContainer, startGameButton } from '../config';
-import { showResults } from '../sprint/endGame';
+import { showResults } from '../sprint/utils/endGame';
 import { getCurrentGroupOfWords } from '../utils/getCurrentGroup';
 import { pushVariants } from './components/pushVariants';
 import { renderAudioCallGame } from './components/renderAudioCallGame';
 import { audioCallPageId, playAudioIconClassName, QUESTIONS_COUNT } from './config';
-import { generateQuizQuestions } from './generateQuestions';
 import { audioCallPageMarkup } from './markup';
-import { playAudio } from './playAudio';
+import { generateQuizQuestions } from './utils/generateQuestions';
+import { playAudio } from './utils/playAudio';
 
 
 

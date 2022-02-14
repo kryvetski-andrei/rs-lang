@@ -1,4 +1,3 @@
-import { pageClassName } from '../../config';
 import { 
   resultNavigationButtons,
   playAgainButtonClassName,
@@ -10,7 +9,7 @@ import {
   wordTranslation,
   wrongAnswersContainerClassName,
 } from './config';
-import { answersContainer, gamePageClassName } from '../config';
+import { answersContainer, gamePageClassName, pageClassName } from '../config';
 import { unitСheckbox } from '../config';
 
 import '../index.scss';

@@ -1,4 +1,4 @@
-import { pageClassName } from '../../config';
+import { pageClassName } from '../../../pages/config';
 import { audioCallPageId, playAudioIconClassName, rightanswerViewerClassName } from './config';
 import { gamePageClassName } from '../config';
 import { answersContainer } from '../config';

@@ -1,5 +1,5 @@
-import { IPair } from "../../../interfaces";
-import { wordTranslation } from "./config";
+import { IPair } from "../../../../interfaces";
+import { wordTranslation } from "../config";
 
 let currentPair = 0;
 

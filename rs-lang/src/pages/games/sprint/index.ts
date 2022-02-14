@@ -7,19 +7,20 @@ import { getWords } from '../../../utilities/api';
 import { generatePairs } from './getWordsPairs';
 import { showResults } from './endGame';
 import { setAnswer, showCurrentPair } from './gamePlay';
+import { getCurrentGroupOfWords } from '../utils/getCurrentGroup';
 
 
 
 
-const getCurrentGroupOfWords = (): number => {
-  let groupIndex = 0;
-  document.body.querySelectorAll(`.${unitСheckbox}`)?.forEach((elem, index) => {
-    if((elem as HTMLInputElement).checked){
-      groupIndex = index;
-    }
-  })
-  return groupIndex;
-}
+// const getCurrentGroupOfWords = (): number => {
+//   let groupIndex = 0;
+//   document.body.querySelectorAll(`.${unitСheckbox}`)?.forEach((elem, index) => {
+//     if((elem as HTMLInputElement).checked){
+//       groupIndex = index;
+//     }
+//   })
+//   return groupIndex;
+// }
 
 
 const startGame = async () => {

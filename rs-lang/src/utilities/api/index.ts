@@ -1,10 +1,19 @@
-import { IAuth, IUser, IUserWord } from '../../interfaces';
-import { signinPath, userDataLocalStorage, usersPath, words, wordsPath } from './config';
+import { IAuth, ISetting, IStatistic, IUser, IUserWord } from '../../interfaces';
+import {
+  aggregatedWords,
+  settings,
+  signinPath,
+  statistics,
+  userDataLocalStorage,
+  usersPath,
+  words,
+  wordsPath,
+} from './config';
 import { TokenService } from './utilities';
 
-export const getNewTokens = async (id: string) => {
+export const getNewTokens = async (userId: string) => {
   const { refreshToken } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
-  const response = await fetch(`${usersPath}/${id}/tokens`, {
+  const response = await fetch(`${usersPath}/${userId}/tokens`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${refreshToken}`,
@@ -25,8 +34,8 @@ export const getWords = async (page: number, group: number) => {
   return wordsData;
 };
 
-export const getWord = async (id: string) => {
-  const response = await fetch(`${wordsPath}/${id}`);
+export const getWord = async (userId: string) => {
+  const response = await fetch(`${wordsPath}/${userId}`);
   const wordData = await response.json();
 
   return wordData;
@@ -71,9 +80,9 @@ export const logoutUser = () => {
   TokenService.removeUser();
 };
 
-export const updateUser = async (id: string, body: IAuth) => {
+export const updateUser = async (userId: string, body: IAuth) => {
   const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
-  const response = await fetch(`${usersPath}/${id}`, {
+  const response = await fetch(`${usersPath}/${userId}`, {
     method: 'PUT',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -84,8 +93,8 @@ export const updateUser = async (id: string, body: IAuth) => {
   });
 
   if (response.status === 401) {
-    await getNewTokens(id);
-    await updateUser(id, body);
+    await getNewTokens(userId);
+    await updateUser(userId, body);
     return;
   }
   const userData = await response.json();
@@ -93,9 +102,9 @@ export const updateUser = async (id: string, body: IAuth) => {
   return userData;
 };
 
-export const deleteUser = async (id: string) => {
+export const deleteUser = async (userId: string) => {
   const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
-  const response = await fetch(`${usersPath}/${id}`, {
+  const response = await fetch(`${usersPath}/${userId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -106,17 +115,17 @@ export const deleteUser = async (id: string) => {
   const userData = await response.json();
 
   if (response.status === 401) {
-    await getNewTokens(id);
-    await deleteUser(id);
+    await getNewTokens(userId);
+    await deleteUser(userId);
     return;
   }
 
   return userData;
 };
 
-export const getUserWords = async (id: string) => {
+export const getUserWords = async (userId: string) => {
   const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
-  const response = await fetch(`${usersPath}/${id}/${words}`, {
+  const response = await fetch(`${usersPath}/${userId}/${words}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -125,8 +134,8 @@ export const getUserWords = async (id: string) => {
     },
   });
   if (response.status === 401) {
-    await getNewTokens(id);
-    await getUserWords(id);
+    await getNewTokens(userId);
+    await getUserWords(userId);
     return;
   }
 
@@ -135,9 +144,9 @@ export const getUserWords = async (id: string) => {
   return userWordData;
 };
 
-export const postUsersWords = async (id: string, wordId: string, word: IUserWord) => {
+export const postUsersWords = async (userId: string, wordId: string, word: IUserWord) => {
   const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
-  const response = await fetch(`${usersPath}/${id}/${words}/${wordId}`, {
+  const response = await fetch(`${usersPath}/${userId}/${words}/${wordId}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -148,8 +157,8 @@ export const postUsersWords = async (id: string, wordId: string, word: IUserWord
   });
 
   if (response.status === 401) {
-    await getNewTokens(id);
-    await postUsersWords(id, wordId, word);
+    await getNewTokens(userId);
+    await postUsersWords(userId, wordId, word);
     return;
   }
   const wordsData = await response.json();
@@ -157,9 +166,9 @@ export const postUsersWords = async (id: string, wordId: string, word: IUserWord
   return wordsData;
 };
 
-export const getUserWord = async (id: string, wordId: string) => {
+export const getUserWord = async (userId: string, wordId: string) => {
   const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
-  const response = await fetch(`${usersPath}/${id}/${words}/${wordId}`, {
+  const response = await fetch(`${usersPath}/${userId}/${words}/${wordId}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -168,8 +177,8 @@ export const getUserWord = async (id: string, wordId: string) => {
     },
   });
   if (response.status === 401) {
-    await getNewTokens(id);
-    await getUserWord(id, wordId);
+    await getNewTokens(userId);
+    await getUserWord(userId, wordId);
     return;
   }
 
@@ -178,9 +187,9 @@ export const getUserWord = async (id: string, wordId: string) => {
   return userWordData;
 };
 
-export const updateUserWord = async (id: string, wordId: string, word: IUserWord) => {
+export const updateUserWord = async (userId: string, wordId: string, word: IUserWord) => {
   const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
-  const response = await fetch(`${usersPath}/${id}/${words}/${wordId}`, {
+  const response = await fetch(`${usersPath}/${userId}/${words}/${wordId}`, {
     method: 'PUT',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -191,8 +200,8 @@ export const updateUserWord = async (id: string, wordId: string, word: IUserWord
   });
 
   if (response.status === 401) {
-    await getNewTokens(id);
-    await updateUserWord(id, wordId, word);
+    await getNewTokens(userId);
+    await updateUserWord(userId, wordId, word);
     return;
   }
   const userWordData = await response.json();
@@ -200,9 +209,9 @@ export const updateUserWord = async (id: string, wordId: string, word: IUserWord
   return userWordData;
 };
 
-export const deleteUserWord = async (id: string, wordId: string) => {
+export const deleteUserWord = async (userId: string, wordId: string) => {
   const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
-  const response = await fetch(`${usersPath}/${id}/${words}/${wordId}`, {
+  const response = await fetch(`${usersPath}/${userId}/${words}/${wordId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -212,10 +221,117 @@ export const deleteUserWord = async (id: string, wordId: string) => {
   });
 
   if (response.status === 401) {
-    await getNewTokens(id);
-    await deleteUser(id);
+    await getNewTokens(userId);
+    await deleteUser(userId);
+  }
+};
+
+// TODO: ADD OTHER FILTERS VIA BOOLEAN PARAMS OR MAP DATA STRUCTURE WITH FILTERS
+
+export const getUserAggregatedHardWords = async (userId: string) => {
+  const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
+  const filter = '{ "$and": [{ "userWord.difficulty": "hard" }] }';
+  const response = await fetch(`${usersPath}/${userId}/${aggregatedWords}?filter=${filter}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+  if (response.status === 401) {
+    await getNewTokens(userId);
+    await getUserAggregatedHardWords(userId);
+    return;
   }
 
-  // const userWordData = await response.json();
-  // return userWordData;
+  const aggregatedHardWordsData = await response.json();
+
+  return aggregatedHardWordsData;
+};
+
+export const getUserStatistics = async (userId: string) => {
+  const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
+  const response = await fetch(`${usersPath}/${userId}/${statistics}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+  if (response.status === 401) {
+    await getNewTokens(userId);
+    await getUserStatistics(userId);
+    return;
+  }
+
+  const userWordData = await response.json();
+
+  return userWordData;
+};
+
+export const updateUserStatistics = async (userId: string, statistic: IStatistic) => {
+  const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
+  const response = await fetch(`${usersPath}/${userId}/${statistics}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(statistic),
+  });
+
+  if (response.status === 401) {
+    await getNewTokens(userId);
+    await updateUserStatistics(userId, statistic);
+    return;
+  }
+  const userWordData = await response.json();
+
+  return userWordData;
+};
+
+export const getUserSettings = async (userId: string) => {
+  const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
+  const response = await fetch(`${usersPath}/${userId}/${settings}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+  if (response.status === 401) {
+    await getNewTokens(userId);
+    await getUserSettings(userId);
+    return;
+  }
+
+  const userWordData = await response.json();
+
+  return userWordData;
+};
+
+export const updateUserSettings = async (userId: string, setting: ISetting) => {
+  const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
+  const response = await fetch(`${usersPath}/${userId}/${settings}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(setting),
+  });
+
+  if (response.status === 401) {
+    await getNewTokens(userId);
+    await updateUserSettings(userId, setting);
+    return;
+  }
+  const userWordData = await response.json();
+
+  return userWordData;
 };

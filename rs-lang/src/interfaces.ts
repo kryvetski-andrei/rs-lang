@@ -45,6 +45,13 @@ export interface IPair {
   userCorrect?: boolean;
 }
 
+export interface IAudioCallQuestion {
+  audio: string;
+  wordsPair: string;
+  rightAnswer: string;
+  variants: Array<string>;
+  userCorrect?:boolean;
+}
 export interface IUserWord {
   difficulty: string;
   optional: Record<string, unknown>;

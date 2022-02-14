@@ -3,62 +3,51 @@ import { getWords } from '../../../utilities/api';
 import { renderMarkup } from '../../../utilities/renderMarkup';
 import { answersContainer, startGameButton } from '../config';
 import { showResults } from '../sprint/endGame';
-import { audioCallPageId, playAudioIconClassName } from './config';
+import { getCurrentGroupOfWords } from '../utils/getCurrentGroup';
+import { pushVariants } from './components/pushVariants';
+import { renderAudioCallGame } from './components/renderAudioCallGame';
+import { audioCallPageId, playAudioIconClassName, QUESTIONS_COUNT } from './config';
 import { generateQuizQuestions } from './generateQuestions';
-import { audioCallGameMarkup, audioCallPageMarkup } from './markup';
+import { audioCallPageMarkup } from './markup';
 import { playAudio } from './playAudio';
 
-let currentQuestion = 0;
+
 
 const  setAnswer = async (elem: IAudioCallQuestion, target: HTMLElement) => {
   elem.userCorrect = (elem.rightAnswer === target.innerHTML);
 }
 
-const changeQuestion = (quizVariants: Array<IAudioCallQuestion>) => {
-  currentQuestion++;
-  pushVariants(quizVariants);
+const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {
+  pushVariants(quizVariants, currentQuestion);
   playAudio(document.body.querySelector(`.${playAudioIconClassName}`)?.getAttribute('data-audio') as string);
 }
 
-const pushVariants = (quizVariants: Array<IAudioCallQuestion>) => {
-  document.body.querySelector(`.${playAudioIconClassName}`)?.setAttribute('data-audio', `${quizVariants[currentQuestion].audio}`);
-  const { variants } = quizVariants[currentQuestion];
-  (document.body.querySelector(`.${answersContainer}`) as HTMLElement).innerHTML = '';
-  variants.forEach((elem) => {
-    const variant = document.createElement('button');
-    variant.classList.add('variants');
-    variant.innerHTML = elem;
-    document.body.querySelector(`.${answersContainer}`)?.insertAdjacentElement('beforeend', variant);
-  })
-}
-
-const renderAudioCall = (audioCallContainer: HTMLElement, quizVariants: Array<IAudioCallQuestion>) => {
-  audioCallContainer.innerHTML = '';
-  renderMarkup(audioCallContainer, audioCallGameMarkup);
-  pushVariants(quizVariants);
-  
-}
 
 const startGame = async () => {
-  const quizVariants = generateQuizQuestions(await getWords(1, 1));
+  let currentQuestion = 0;
+  const quizVariants = generateQuizQuestions(await getWords(1, getCurrentGroupOfWords()));
   const audioCallContainer = document.body.querySelector(`#${audioCallPageId}`) as HTMLElement;
-  renderAudioCall(audioCallContainer, quizVariants);
-  const audioButton = document.body.querySelector(`.${playAudioIconClassName}`)
+  renderAudioCallGame(audioCallContainer, quizVariants, currentQuestion);
+  
+  const audioButton = document.body.querySelector(`.${playAudioIconClassName}`);
+  
   playAudio(audioButton?.getAttribute('data-audio') as string);
 
   audioCallContainer.querySelector(`.${playAudioIconClassName}`)?.addEventListener('click', () => {
     playAudio(audioButton?.getAttribute('data-audio') as string);
-    console.log(audioButton);
   });
 
   audioCallContainer.querySelector(`.${answersContainer}`)?.addEventListener('click', async ({target}) => {
     if((target as HTMLElement).tagName === 'BUTTON'){
-      if(currentQuestion === 9){
-        showResults(quizVariants, audioCallContainer);
+      if(currentQuestion === QUESTIONS_COUNT - 1){
+        setAnswer(quizVariants[currentQuestion], target as HTMLElement);
         currentQuestion = 0;
+        showResults(quizVariants, audioCallContainer);
+      } else{
+        setAnswer(quizVariants[currentQuestion], target as HTMLElement);
+        currentQuestion++;
+        changeQuestion(quizVariants, currentQuestion);
       }
-      setAnswer(quizVariants[currentQuestion], target as HTMLElement);
-      changeQuestion(quizVariants);
     }
   });
 } 
@@ -66,7 +55,7 @@ const startGame = async () => {
 
 export const mountAudioCallPageDOMElement = (parentDOMElement: HTMLElement) => {
   renderMarkup(parentDOMElement, audioCallPageMarkup);
-  const buttonStartGame = document.querySelector(`.${startGameButton}`)
+  const buttonStartGame = document.querySelector(`.${startGameButton}`);
   buttonStartGame?.addEventListener('click', startGame, {once: true});
 
 };

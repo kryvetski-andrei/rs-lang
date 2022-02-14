@@ -1,5 +1,5 @@
 import { renderMarkup } from '../../../utilities/renderMarkup';
-import { answersContainer, startGameButton, unitСheckbox } from '../config';
+import { answersContainer, startGameButton } from '../config';
 import { sprintGameMarkup, sprintPageMarkup } from './markup';
 import { sprintPageId, TIMER_DURATION } from './config';
 import { getWords } from '../../../utilities/api';
@@ -18,16 +18,16 @@ const startGame = async () => {
   showCurrentPair(wordPairs);
   setTimeout(() => {
     showResults(wordPairs, sprintContainer);
-  }, TIMER_DURATION)
-  document.body.querySelector(`.${answersContainer}`)?.addEventListener('click',({target}) =>{
-    if((target as Element).tagName === 'BUTTON'){
+  }, TIMER_DURATION);
+  document.body.querySelector(`.${answersContainer}`)?.addEventListener('click', ({ target }) => {
+    if ((target as Element).tagName === 'BUTTON') {
       setAnswer(wordPairs, (target as Element).className);
     }
-  })
-}
+  });
+};
 
 export const mountSprintPageDOMElement = (parentDOMElement: HTMLElement) => {
   renderMarkup(parentDOMElement, sprintPageMarkup);
-  const buttonStartGame = document.querySelector(`.${startGameButton}`)
-  buttonStartGame?.addEventListener('click', startGame, {once: true});
+  const buttonStartGame = document.querySelector(`.${startGameButton}`);
+  buttonStartGame?.addEventListener('click', startGame, { once: true });
 };

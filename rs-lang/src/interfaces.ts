@@ -50,7 +50,7 @@ export interface IAudioCallQuestion {
   wordsPair: string;
   rightAnswer: string;
   variants: Array<string>;
-  userCorrect?:boolean;
+  userCorrect?: boolean;
 }
 export interface IUserWord {
   difficulty: string;

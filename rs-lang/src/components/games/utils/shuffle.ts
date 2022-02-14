@@ -1,5 +1,5 @@
-import { IPair, IWord } from "../../../interfaces";
+import { IPair, IWord } from '../../../interfaces';
 
 export const shuffle = (array: Array<IPair | IWord | string>) => {
-    array.sort(() => Math.random() - 0.5);
-}
+  array.sort(() => Math.random() - 0.5);
+};

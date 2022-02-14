@@ -16,7 +16,6 @@ import { IRoute } from './interfaces';
 
 import { pagesHash, pageWrapperId, sidebarWrapperId } from './config';
 
-
 const pageWrapperDOMElement = document.getElementById(pageWrapperId) as HTMLElement;
 const sidebarWrapperDOMElement = document.getElementById(sidebarWrapperId) as HTMLElement;
 

@@ -1,4 +1,4 @@
-import { 
+import {
   resultNavigationButtons,
   playAgainButtonClassName,
   rightAnswersContainerClassName,
@@ -9,8 +9,7 @@ import {
   wordTranslation,
   wrongAnswersContainerClassName,
 } from './config';
-import { answersContainer, gamePageClassName, pageClassName } from '../config';
-import { unitСheckbox } from '../config';
+import { answersContainer, gamePageClassName, pageClassName, unitСheckbox } from '../config';
 
 import '../index.scss';
 import './index.scss';
@@ -48,7 +47,7 @@ export const resultsMarkup = `
     <a class="${playAgainButtonClassName}" href="/#/games">Еще раз</a>
   </div>
 </div>
-`
+`;
 
 export const sprintGameMarkup = `
   <div class="${timerClassName}">30</div>
@@ -58,4 +57,4 @@ export const sprintGameMarkup = `
     <button class="false">Неверно</button>
     <button class="true">Верно</button>
   </div>
-`
+`;

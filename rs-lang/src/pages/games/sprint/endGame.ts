@@ -1,23 +1,25 @@
-import { IPair } from "../../../interfaces";
+import { IPair, IAudioCallQuestion } from "../../../interfaces";
 import { renderMarkup } from "../../../utilities/renderMarkup";
-import { rightAnswersContainer, wrongAnswersContainer } from "./config";
+import { rightAnswersContainerClassName, wrongAnswersContainerClassName } from "./config";
 import { resultsMarkup } from "./markup";
 
-const pushVariantsToList = (wordPairs: Array<IPair>, parentDOMElement: HTMLElement) => {
+const pushVariantsToList = (wordPairs: Array<IPair | IAudioCallQuestion>, parentDOMElement: HTMLElement) => {
+  const rightAnswersContainer = parentDOMElement.querySelector(`.${rightAnswersContainerClassName}`);
+  const wrongAnswersContainer = parentDOMElement.querySelector(`.${wrongAnswersContainerClassName}`);
     wordPairs.forEach(({wordsPair, userCorrect}) => {
       if(userCorrect !== undefined){
         const listItem = document.createElement('li')
         listItem.innerHTML = `${wordsPair}`;
         if(userCorrect){
-          parentDOMElement.querySelector(`.${rightAnswersContainer}`)?.insertAdjacentElement('beforeend', listItem);
+          rightAnswersContainer?.insertAdjacentElement('beforeend', listItem);
         } else{
-          parentDOMElement.querySelector(`.${wrongAnswersContainer}`)?.insertAdjacentElement('beforeend', listItem);
+          wrongAnswersContainer?.insertAdjacentElement('beforeend', listItem);
         }
       }
     })
   }
   
-export const showResults = (wordPairs: Array<IPair>, parentDOMElement: HTMLElement) => {
+export const showResults = (wordPairs: Array<IPair | IAudioCallQuestion>, parentDOMElement: HTMLElement) => {
   renderMarkup(parentDOMElement, resultsMarkup);
   pushVariantsToList(wordPairs, parentDOMElement);
 }

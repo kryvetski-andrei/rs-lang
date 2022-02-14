@@ -1,5 +1,15 @@
 import { pageClassName } from '../../config';
-import { resultNavigationButtons, playAgainButtonClassName, rightAnswersContainer, scoreClassName, sprintPageId, timerClassName, toSchoolbookButtonClassName, wordTranslation, wrongAnswersContainer } from './config';
+import { 
+  resultNavigationButtons,
+  playAgainButtonClassName,
+  rightAnswersContainerClassName,
+  scoreClassName,
+  sprintPageId,
+  timerClassName,
+  toSchoolbookButtonClassName,
+  wordTranslation,
+  wrongAnswersContainerClassName,
+} from './config';
 import { answersContainer, gamePageClassName } from '../config';
 import { unitСheckbox } from '../config';
 
@@ -28,10 +38,10 @@ export const resultsMarkup = `
 <div class="results-viewer">
   <div class="results-container">
     <p class="right">Верно</p>
-    <ul class="${rightAnswersContainer}">
+    <ul class="${rightAnswersContainerClassName}">
     </ul>
     <p class="wrong">Неверно</p>
-    <ul class="${wrongAnswersContainer}">
+    <ul class="${wrongAnswersContainerClassName}">
     </ul>
   </div>
   <div class="${resultNavigationButtons}">

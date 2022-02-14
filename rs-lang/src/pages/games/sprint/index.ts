@@ -1,7 +1,7 @@
 import { renderMarkup } from '../../../utilities/renderMarkup';
 import { answersContainer, startGameButton, unitСheckbox } from '../config';
 import { sprintGameMarkup, sprintPageMarkup } from './markup';
-import { sprintPageId, timerDuration } from './config';
+import { sprintPageId, TIMER_DURATION } from './config';
 import { setCountdown } from './timer';
 import { getWords } from '../../../utilities/api';
 import { generatePairs } from './getWordsPairs';
@@ -31,7 +31,7 @@ const startGame = async () => {
   showCurrentPair(wordPairs);
   setTimeout(() => {
     showResults(wordPairs, sprintContainer);
-  }, timerDuration)
+  }, TIMER_DURATION)
   document.body.querySelector(`.${answersContainer}`)?.addEventListener('click',({target}) =>{
     if((target as Element).tagName === 'BUTTON'){
       setAnswer(wordPairs, (target as Element).className);

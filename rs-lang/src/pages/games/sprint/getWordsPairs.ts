@@ -1,16 +1,6 @@
 import { IPair, IWord } from "../../../interfaces";
-import { maxWordsCount } from "./config";
-
-const shuffle = (array: Array<IPair>) => {
-    array.sort(() => Math.random() - 0.5);
-}
-
-const getRandomTranslation = (wordsData:Array<IWord>, index: number): string => {
-  if(index === 0 || index === maxWordsCount - 1){
-    return wordsData[Math.floor(Math.random() * (maxWordsCount - index)) + index].wordTranslate
-  }
-  return wordsData[Math.floor(Math.random() * index)].wordTranslate
-}
+import { shuffle } from "../utils/shuffle";
+import { getRandomTranslation } from "../utils/getRandomTranslation";
 
 export const generatePairs = (wordsData: Array<IWord>): Array<IPair> => {
   const wordsPpairs: Array<IPair> = [];

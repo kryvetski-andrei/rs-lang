@@ -26,6 +26,6 @@ export const audioCallPageMarkup = `
 
 export const audioCallGameMarkup = `
   <div class="${playAudioIconClassName}">${audioIconSVG}</div>
-  <div class="${rightanswerViewerClassName}">Test</div>
+  <div class="${rightanswerViewerClassName}"></div>
   <div class="${answersContainer}"></div>
 `

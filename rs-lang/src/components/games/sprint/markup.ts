@@ -11,7 +11,6 @@ import {
 } from './config';
 import { answersContainer, gamePageClassName, pageClassName, unitСheckbox } from '../config';
 
-import '../index.scss';
 import './index.scss';
 
 export const sprintPageMarkup = `

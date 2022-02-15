@@ -4,7 +4,6 @@ import { gamePageClassName, answersContainer, unitСheckbox } from '../config';
 
 import { audioIconSVG } from '../markup';
 
-import '../index.scss';
 import './index.scss';
 
 export const audioCallPageMarkup = `

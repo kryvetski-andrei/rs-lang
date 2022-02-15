@@ -4,7 +4,7 @@ import { renderMarkup } from '../../../utilities/renderMarkup';
 import { answersContainer, startGameButton } from '../config';
 import { showResults } from '../sprint/utils/endGame';
 import { getCurrentGroupOfWords } from '../utils/getCurrentGroup';
-import { pushVariants } from './components/pushVariants';
+import { mountQuestionVariantsDOMelements } from './components/pushVariants';
 import { renderAudioCallGame } from './components/renderAudioCallGame';
 import { audioCallPageId, playAudioIconClassName, QUESTIONS_COUNT } from './config';
 import { audioCallPageMarkup } from './markup';
@@ -16,7 +16,7 @@ const setAnswer = async (elem: IAudioCallQuestion, target: HTMLElement) => {
 };
 
 const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {
-  pushVariants(quizVariants, currentQuestion);
+  mountQuestionVariantsDOMelements(quizVariants, currentQuestion);
   playAudio(document.body.querySelector(`.${playAudioIconClassName}`)?.getAttribute('data-audio') as string);
 };
 

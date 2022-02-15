@@ -11,8 +11,8 @@ import { audioCallPageMarkup } from './markup';
 import { generateQuizQuestions } from './utils/generateQuestions';
 import { playAudio } from './utils/playAudio';
 
-const setAnswer = async (elem: IAudioCallQuestion, target: HTMLElement) => {
-  elem.userCorrect = elem.rightAnswer === target.innerHTML;
+const setAnswer = async (currentQuestion: IAudioCallQuestion, target: HTMLElement) => {
+  currentQuestion.userCorrect = currentQuestion.rightAnswer === target.innerHTML;
 };
 
 const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {

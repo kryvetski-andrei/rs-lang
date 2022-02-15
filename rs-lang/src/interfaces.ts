@@ -39,6 +39,19 @@ export interface IWord {
   textExampleTranslate: string;
 }
 
+export interface IPair {
+  wordsPair: string;
+  isPairRight: boolean;
+  userCorrect?: boolean;
+}
+
+export interface IAudioCallQuestion {
+  audio: string;
+  wordsPair: string;
+  rightAnswer: string;
+  variants: Array<string>;
+  userCorrect?: boolean;
+}
 export interface IUserWord {
   difficulty: string;
   optional: Record<string, unknown>;

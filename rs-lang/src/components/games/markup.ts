@@ -1,5 +1,4 @@
-import { pageClassName } from '../config';
-import { gamesPageId } from './config';
+import { pageClassName, gamesPageId } from './config';
 
 import './index.scss';
 

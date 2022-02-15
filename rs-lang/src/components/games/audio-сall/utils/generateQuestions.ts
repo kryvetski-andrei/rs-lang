@@ -3,7 +3,7 @@ import { getFirstElementsOfArray } from '../../utils/firstElements';
 import { shuffle } from '../../utils/shuffle';
 import { QUESTIONS_COUNT, WRONG_VARIANTS_COUNT } from '../config';
 
-const getRandomvariants = (wordsData: Array<IWord>, rightAnswer: string, index: number): Array<string> => {
+const getRandomVariants = (wordsData: Array<IWord>, rightAnswer: string, index: number): Array<string> => {
   const array = wordsData.map(({ wordTranslate }) => wordTranslate);
   array.splice(index, 1);
   shuffle(array);
@@ -19,7 +19,7 @@ export const generateQuizQuestions = (wordsData: Array<IWord>): Array<IAudioCall
     return {
       audio,
       rightAnswer: wordTranslate,
-      variants: getRandomvariants(wordsData, wordTranslate, index),
+      variants: getRandomVariants(wordsData, wordTranslate, index),
       wordsPair: `${word} — ${wordTranslate}`,
     };
   });

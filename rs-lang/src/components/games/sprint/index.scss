@@ -1,21 +1,21 @@
-#sprint{
-    display: flex;
-    justify-content: center;
-    align-content: space-between;
-    align-items: center;
-    .timer{
-        margin: 30px auto;
-        font-family: monospace;
-        font-size: 36px;
-    }
-    .score{
-        margin: 30px auto;
-        font-family: monospace;
-        font-size: 32px;
-    }
-    .word-translate-container{
-        margin: 30px auto;
-        font-family: monospace;
-        font-size: 32px;
-    }    
+#sprint {
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  align-items: center;
+  .timer {
+    margin: 30px auto;
+    font-family: monospace;
+    font-size: 36px;
+  }
+  .score {
+    margin: 30px auto;
+    font-family: monospace;
+    font-size: 32px;
+  }
+  .word-translate-container {
+    margin: 30px auto;
+    font-family: monospace;
+    font-size: 32px;
+  }    
 }

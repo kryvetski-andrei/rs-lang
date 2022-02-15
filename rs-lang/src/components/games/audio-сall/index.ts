@@ -6,7 +6,7 @@ import { showResults } from '../sprint/utils/endGame';
 import { getCurrentGroupOfWords } from '../utils/getCurrentGroup';
 import { mountQuestionVariantsDOMelements } from './components/pushVariants';
 import { renderAudioCallGame } from './components/renderAudioCallGame';
-import { audioCallPageId, playAudioIconClassName, QUESTIONS_COUNT } from './config';
+import { audioCallPageId, audioDataAttribute, playAudioIconClassName, QUESTIONS_COUNT } from './config';
 import { audioCallPageMarkup } from './markup';
 import { generateQuizQuestions } from './utils/generateQuestions';
 import { playAudio } from './utils/playAudio';
@@ -17,7 +17,7 @@ const setAnswer = async (currentQuestion: IAudioCallQuestion, target: HTMLElemen
 
 const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {
   mountQuestionVariantsDOMelements(quizVariants, currentQuestion);
-  playAudio(document.body.querySelector(`.${playAudioIconClassName}`)?.getAttribute('data-audio') as string);
+  playAudio(document.body.querySelector(`.${playAudioIconClassName}`)?.getAttribute(`${audioDataAttribute}`) as string);
 };
 
 const startGame = async () => {
@@ -28,20 +28,21 @@ const startGame = async () => {
 
   const audioButton = document.body.querySelector(`.${playAudioIconClassName}`);
 
-  playAudio(audioButton?.getAttribute('data-audio') as string);
+  playAudio(audioButton?.getAttribute(`${audioDataAttribute}`) as string);
 
   audioCallContainer.querySelector(`.${playAudioIconClassName}`)?.addEventListener('click', () => {
-    playAudio(audioButton?.getAttribute('data-audio') as string);
+    playAudio(audioButton?.getAttribute(`${audioDataAttribute}`) as string);
   });
 
   audioCallContainer.querySelector(`.${answersContainer}`)?.addEventListener('click', async ({ target }) => {
-    if ((target as HTMLElement).tagName === 'BUTTON') {
+    const targetElement = target as HTMLElement;
+    if (targetElement.tagName === 'BUTTON') {
       if (currentQuestion === QUESTIONS_COUNT - 1) {
-        setAnswer(quizVariants[currentQuestion], target as HTMLElement);
+        setAnswer(quizVariants[currentQuestion], targetElement);
         currentQuestion = 0;
         showResults(quizVariants, audioCallContainer);
       } else {
-        setAnswer(quizVariants[currentQuestion], target as HTMLElement);
+        setAnswer(quizVariants[currentQuestion], targetElement);
         currentQuestion += 1;
         changeQuestion(quizVariants, currentQuestion);
       }

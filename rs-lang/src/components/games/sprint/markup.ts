@@ -8,8 +8,10 @@ import {
   toSchoolbookButtonClassName,
   wordTranslation,
   wrongAnswersContainerClassName,
+  trueAnswerClassName,
+  falseAnswerClassName,
 } from './config';
-import { answersContainer, gamePageClassName, pageClassName, unitСheckbox } from '../config';
+import { answersContainerClassName, gamePageClassName, pageClassName, unitСheckbox } from '../config';
 
 import './index.scss';
 
@@ -52,8 +54,8 @@ export const sprintGameMarkup = `
   <div class="${timerClassName}">30</div>
   <div class="${scoreClassName}">Score: 0</div>
   <div class="${wordTranslation}">Слово - перевод</div>
-  <div class="${answersContainer}">
-    <button class="false">Неверно</button>
-    <button class="true">Верно</button>
+  <div class="${answersContainerClassName}">
+    <button class="${trueAnswerClassName}">Неверно</button>
+    <button class="${falseAnswerClassName}">Верно</button>
   </div>
 `;

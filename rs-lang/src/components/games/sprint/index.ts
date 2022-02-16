@@ -1,5 +1,5 @@
 import { renderMarkup } from '../../../utilities/renderMarkup';
-import { answersContainer, startGameButton } from '../config';
+import { answersContainerClassName, startGameButton } from '../config';
 import { sprintGameMarkup, sprintPageMarkup } from './markup';
 import { sprintPageId, TIMER_DURATION } from './config';
 import { getWords } from '../../../utilities/api';
@@ -19,7 +19,7 @@ const startGame = async () => {
   setTimeout(() => {
     showResults(wordPairs, sprintContainer);
   }, TIMER_DURATION);
-  document.body.querySelector(`.${answersContainer}`)?.addEventListener('click', ({ target }) => {
+  document.body.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', ({ target }) => {
     if ((target as Element).tagName === 'BUTTON') {
       setAnswer(wordPairs, (target as Element).className);
     }

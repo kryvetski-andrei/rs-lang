@@ -1,6 +1,6 @@
 import { pageClassName } from '../../../pages/config';
-import { audioCallPageId, playAudioIconClassName, rightanswerViewerClassName } from './config';
-import { gamePageClassName, answersContainer, unitСheckbox } from '../config';
+import { audioCallPageId, playAudioIconClassName, rightAnswerViewerClassName } from './config';
+import { gamePageClassName, answersContainerClassName, unitСheckbox } from '../config';
 
 import { audioIconSVG } from '../markup';
 
@@ -26,6 +26,6 @@ export const audioCallPageMarkup = `
 
 export const audioCallGameMarkup = `
   <div class="${playAudioIconClassName}">${audioIconSVG}</div>
-  <div class="${rightanswerViewerClassName}"></div>
-  <div class="${answersContainer}"></div>
+  <div class="${rightAnswerViewerClassName}"></div>
+  <div class="${answersContainerClassName}"></div>
 `;

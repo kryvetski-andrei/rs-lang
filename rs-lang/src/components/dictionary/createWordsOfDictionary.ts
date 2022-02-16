@@ -4,6 +4,7 @@ import { boxCardsIdName } from '../../pages/dictionary/config';
 import { getUserAggregatedHardWords } from '../../utilities/api';
 import { userDataLocalStorage } from '../../utilities/api/config';
 import { cleanUp } from '../../utilities/cleanUp';
+import { gameAudioElement, gameSprintElement } from '../config';
 import { switchAudio } from '../schoolbook/switchAudio';
 import { deleteWordFromDifficult } from './deleteWordFromDictionary';
 
@@ -17,6 +18,8 @@ export const createWordsOfDictionary = async () => {
 
     if (wordsForDictionary[0].paginatedResults.length === 0) {
       cardOfBookElement.innerHTML = 'У вас нет "Сложных слов"';
+      gameSprintElement.disabled = true;
+      gameAudioElement.disabled = true;
     }
 
     wordsForDictionary[0].paginatedResults.forEach((wordOfdictionary: IWordDictionaryElement) => {
@@ -27,5 +30,7 @@ export const createWordsOfDictionary = async () => {
   } else {
     cardOfBookElement.innerHTML =
       'Вам необходимо авторизоваться, чтобы была возможность увидеть раздел "Сложные слова"';
+    gameSprintElement.disabled = true;
+    gameAudioElement.disabled = true;
   }
 };

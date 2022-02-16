@@ -9,3 +9,6 @@ export const hiddenClassName = 'hidden';
 export const markOfLearnedWord = 'learn';
 export const markOfDifficultWord = 'hard';
 export const markOfNot = 'no';
+
+export const gameSprintElement = document.body.querySelector('.sprint-game') as HTMLButtonElement;
+export const gameAudioElement = document.body.querySelector('.audio-game') as HTMLButtonElement;

@@ -18,8 +18,9 @@ export const createWordsOfDictionary = async () => {
 
     if (wordsForDictionary[0].paginatedResults.length === 0) {
       cardOfBookElement.innerHTML = 'У вас нет "Сложных слов"';
-      gameSprintElement.disabled = true;
-      gameAudioElement.disabled = true;
+      // TODO maybe
+      // gameSprintElement.disabled = true;
+      // gameAudioElement.disabled = true;
     }
 
     wordsForDictionary[0].paginatedResults.forEach((wordOfdictionary: IWordDictionaryElement) => {
@@ -30,7 +31,8 @@ export const createWordsOfDictionary = async () => {
   } else {
     cardOfBookElement.innerHTML =
       'Вам необходимо авторизоваться, чтобы была возможность увидеть раздел "Сложные слова"';
-    gameSprintElement.disabled = true;
-    gameAudioElement.disabled = true;
+    // TODO maybe
+    // gameSprintElement.disabled = true;
+    // gameAudioElement.disabled = true;
   }
 };

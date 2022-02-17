@@ -4,5 +4,5 @@ import { dictionaryPageId } from './config';
 import './index.scss';
 
 export const dictionaryPageMarkup = `
-  <section id="${dictionaryPageId}" class="${pageClassName}">dictionary</section>
+  <section id="${dictionaryPageId}" class="${pageClassName}">Dictionary</section>
 `;

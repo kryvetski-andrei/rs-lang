@@ -8,7 +8,13 @@ import { playAnswerSound } from '../utils/playAnswerSound';
 import { mountQuestionVariantsDOMelements } from './components/pushVariants';
 import { renderAudioCallGame } from './components/renderAudioCallGame';
 import { showRightAnswer } from './components/showRightAnswer';
-import { audioCallPageId, audioDataAttribute, playAudioIconClassName, QUESTIONS_COUNT, rightAnswerViewerClassName } from './config';
+import {
+  audioCallPageId,
+  audioDataAttribute,
+  playAudioIconClassName,
+  QUESTIONS_COUNT,
+  rightAnswerViewerClassName,
+} from './config';
 import { audioCallPageMarkup } from './markup';
 import { disableQuestionVariants } from './utils/disableButtons';
 import { generateQuizQuestions } from './utils/generateQuestions';

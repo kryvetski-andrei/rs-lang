@@ -2,19 +2,18 @@ import { renderMarkup } from '../../../utilities/renderMarkup';
 import { answersContainerClassName, startGameButton } from '../config';
 import { sprintGameMarkup, sprintPageMarkup } from './markup';
 import { sprintPageId, TIMER_DURATION } from './config';
-import { getWords } from '../../../utilities/api';
 import { showResults } from './utils/endGame';
-import { getCurrentGroupOfWords } from '../utils/getCurrentGroup';
 import { setCountdown } from './utils/timer';
 import { generatePairs } from './utils/getWordsPairs';
 import { setAnswer, showCurrentPair } from './utils/gamePlay';
+import { getWordsForGame } from '../utils/getWordsForGame';
 
-const startGame = async () => {
+const startGameSprintGame = async () => {
   const sprintContainer = document.body.querySelector(`#${sprintPageId}`) as HTMLElement;
   sprintContainer.innerHTML = '';
   renderMarkup(sprintContainer, sprintGameMarkup);
   setCountdown();
-  const wordPairs = generatePairs(await getWords(0, getCurrentGroupOfWords()));
+  const wordPairs = generatePairs(await getWordsForGame());
   showCurrentPair(wordPairs);
   setTimeout(() => {
     showResults(wordPairs, sprintContainer);
@@ -27,7 +26,7 @@ const startGame = async () => {
 };
 
 export const mountSprintPageDOMElement = (parentDOMElement: HTMLElement) => {
-  renderMarkup(parentDOMElement, sprintPageMarkup);
+  renderMarkup(parentDOMElement, sprintPageMarkup());
   const buttonStartGame = document.querySelector(`.${startGameButton}`);
-  buttonStartGame?.addEventListener('click', startGame, { once: true });
+  buttonStartGame?.addEventListener('click', startGameSprintGame, { once: true });
 };

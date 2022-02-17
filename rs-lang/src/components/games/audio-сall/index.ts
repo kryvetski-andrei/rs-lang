@@ -1,9 +1,8 @@
 import { IAudioCallQuestion } from '../../../interfaces';
-import { getWords } from '../../../utilities/api';
 import { renderMarkup } from '../../../utilities/renderMarkup';
 import { answersContainerClassName, startGameButton } from '../config';
 import { showResults } from '../sprint/utils/endGame';
-import { getCurrentGroupOfWords } from '../utils/getCurrentGroup';
+import { getWordsForGame } from '../utils/getWordsForGame';
 import { playAnswerSound } from '../utils/playAnswerSound';
 import { mountQuestionVariantsDOMelements } from './components/pushVariants';
 import { renderAudioCallGame } from './components/renderAudioCallGame';
@@ -31,9 +30,9 @@ const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion
   playAudio(document.body.querySelector(`.${playAudioIconClassName}`)?.getAttribute(`${audioDataAttribute}`) as string);
 };
 
-const startGame = async () => {
+const startGameAudioGame = async () => {
   let currentQuestion = 0;
-  const quizVariants = generateQuizQuestions(await getWords(1, getCurrentGroupOfWords()));
+  const quizVariants = generateQuizQuestions(await getWordsForGame());
   const audioCallContainer = document.body.querySelector(`#${audioCallPageId}`) as HTMLElement;
   renderAudioCallGame(audioCallContainer, quizVariants, currentQuestion);
 
@@ -66,7 +65,7 @@ const startGame = async () => {
 };
 
 export const mountAudioCallPageDOMElement = (parentDOMElement: HTMLElement) => {
-  renderMarkup(parentDOMElement, audioCallPageMarkup);
+  renderMarkup(parentDOMElement, audioCallPageMarkup());
   const buttonStartGame = document.querySelector(`.${startGameButton}`);
-  buttonStartGame?.addEventListener('click', startGame, { once: true });
+  buttonStartGame?.addEventListener('click', startGameAudioGame, { once: true });
 };

@@ -1,5 +1,5 @@
 import { IAudioCallQuestion } from '../../../../interfaces';
-import { answersContainer } from '../../config';
+import { answersContainerClassName } from '../../config';
 import { audioDataAttribute, playAudioIconClassName, variantItemClassName } from '../config';
 
 const getQestionVariantDOMElement = (qestionVariant: string) => {
@@ -10,14 +10,13 @@ const getQestionVariantDOMElement = (qestionVariant: string) => {
 };
 
 export const mountQuestionVariantsDOMelements = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {
+  const answersContainers = document.body.querySelector(`.${answersContainerClassName}`) as HTMLElement;
+  answersContainers.innerHTML = '';
   document.body
     .querySelector(`.${playAudioIconClassName}`)
     ?.setAttribute(`${audioDataAttribute}`, `${quizVariants[currentQuestion].audio}`);
   const { variants } = quizVariants[currentQuestion];
-  (document.body.querySelector(`.${answersContainer}`) as HTMLElement).innerHTML = '';
   variants.forEach((variant) => {
-    document.body
-      .querySelector(`.${answersContainer}`)
-      ?.insertAdjacentElement('beforeend', getQestionVariantDOMElement(variant));
+    answersContainers?.insertAdjacentElement('beforeend', getQestionVariantDOMElement(variant));
   });
 };

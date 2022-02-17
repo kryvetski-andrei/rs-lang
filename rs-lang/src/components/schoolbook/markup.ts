@@ -15,8 +15,8 @@ export const wrapOfBook = `
       <button class="unit-6 unit-button" title="Unit 6" data="5">6</button>
     </div>
     <div class="game-controls">
-      <button class="audio-game" title="audio-game"></button>
-      <button class="sprint-game" title="sprint-game"></button>
+      <a href="#/audio-call" class="audio-game" title="audio-game"></a>
+      <a href="#/sprint" class="sprint-game" title="sprint-game"></a>
     </div>
   </div>
   <div class="cards-wrap" id="cards-block"></div>

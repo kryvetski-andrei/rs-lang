@@ -40,12 +40,14 @@ export interface IWord {
 }
 
 export interface IPair {
+  id: string;
   wordsPair: string;
   isPairRight: boolean;
   userCorrect?: boolean;
 }
 
 export interface IAudioCallQuestion {
+  id: string;
   audio: string;
   wordsPair: string;
   rightAnswer: string;
@@ -55,6 +57,12 @@ export interface IAudioCallQuestion {
 export interface IUserWord {
   difficulty: string;
   optional: Record<string, unknown>;
+}
+
+export interface IResults {
+  words: Array<IAudioCallQuestion | IPair>;
+  bestSeries: number;
+  currentSeries: number;
 }
 
 export interface IStatistic {

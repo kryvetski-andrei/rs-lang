@@ -25,7 +25,7 @@ export const createCardsOfBook = async () => {
   cleanUp(cardOfBookElement);
 
   const numericOfUnit = String(appState.groupOfSchoolbook + 1);
-  
+
   if (localStorage.getItem(`${userDataLocalStorage}`)) {
     const userDataForBook = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
     const arrayOfUserWord = await getWordsOfUser(userDataForBook.userId);
@@ -43,4 +43,3 @@ export const createCardsOfBook = async () => {
     });
   }
 };
-

@@ -10,3 +10,19 @@ export const getWordsForGame = async (): Promise<any> => {
     return getWords(Number(localStorage.getItem(pageOfBook)), Number(localStorage.getItem(groupOfBook)));
   }
 };
+
+
+const initialStatistics = {
+  learnedWords: 0,
+  optional: {
+    newWords: [],
+    audioCallGameStat: {
+      longestSeries: 0,
+      words: []
+    },
+    springGameStat: {
+      longestSeries: 0, 
+      words: []
+    },
+  }
+}

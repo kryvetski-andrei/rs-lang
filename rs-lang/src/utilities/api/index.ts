@@ -11,6 +11,27 @@ import {
 } from './config';
 import { TokenService } from './utilities';
 
+//TODO MOVE THIS INITIAL TO SOME CONFIG ON HIGHT LEVEL
+const initialStatistics = {
+  learnedWords: 0,
+  optional: {
+    newWords: {
+      '01.01.2001': []
+    },
+    learnedWordsPerDay: {
+      '01.01.2001': [],
+    },
+    audioCallGameStat: {
+      longestSeries: 0,
+      words: []
+    },
+    springGameStat: {
+      longestSeries: 0, 
+      words: []
+    },
+  }
+}
+
 export const getNewTokens = async (userId: string) => {
   const { refreshToken } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
   const response = await fetch(`${usersPath}/${userId}/tokens`, {
@@ -51,7 +72,7 @@ export const createUser = async (body: IUser) => {
     body: JSON.stringify(body),
   });
   const userData = await response.json();
-
+  console.log(userData, 'data')
   return userData;
 };
 
@@ -70,10 +91,12 @@ export const loginUser = async (user: IUser) => {
 
   return userData;
 };
-
+//TODO CRATE NEW FUNC TO ADD STAT INITIAL 
 export const authorizeUser = async ({ name, email, password }: IUser) => {
-  await createUser({ name, email, password });
-  loginUser({ email, password });
+  const user = await createUser({ name, email, password });
+  const userId = user.id;
+  await loginUser({ email, password });
+  updateUserStatistics(userId, initialStatistics)
 };
 
 export const logoutUser = () => {

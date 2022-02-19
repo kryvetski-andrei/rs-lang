@@ -51,7 +51,7 @@ export const sprintGameMarkup = `
   <div class="${scoreClassName}">Score: 0</div>
   <div class="${wordTranslation}">Слово - перевод</div>
   <div class="${answersContainerClassName}">
-    <button class="${trueAnswerClassName}">Неверно</button>
-    <button class="${falseAnswerClassName}">Верно</button>
+    <button class="${falseAnswerClassName}">Неверно</button>
+    <button class="${trueAnswerClassName}">Верно</button>
   </div>
 `;

@@ -19,6 +19,6 @@ export const mountSchoolbookPageDOMElement = (parentDOMElement: HTMLElement) => 
   startGames();
   createCardsOfBook();
   updateStatePageOfBook();
-  switchUnitsOfBook();
   switchPageOfBook();
+  switchUnitsOfBook();
 };

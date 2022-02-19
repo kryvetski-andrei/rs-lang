@@ -10,7 +10,7 @@ export const hiddenClassName = 'hidden';
 export const markOfLearnedWord = 'learn';
 export const markOfDifficultWord = 'hard';
 export const markOfNot = 'no';
-export const infoClassName ='info-dictionary';
+export const infoClassName = 'info-dictionary';
 
 export const sprintGameClassName = '.sprint-game';
 export const audioGameClassName = '.audio-game';

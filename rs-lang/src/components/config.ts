@@ -1,5 +1,4 @@
-
-
+export const MAX_NUMBER_OF_WORDS_ON_PAGE = 20;
 export const MAX_NUMBER_OF_WORDS_PER_PAGE = 30;
 
 export const pageOfBookLocalStorage = 'pageOfBook';

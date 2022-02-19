@@ -3,6 +3,14 @@ import { userDataLocalStorage } from '../../utilities/api/config';
 import { difficultClassName } from '../config';
 import { checkCountOfWord } from './createWordsOfDictionary';
 
+
+export const checkWordsOfDictionary = async () => {
+  const userDataForBook = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
+  const wordsForDictionary = await getUserAggregatedHardWords(userDataForBook.userId);
+  const countOfwordIndictionary = wordsForDictionary[0].paginatedResults.length;
+  checkCountOfWord(countOfwordIndictionary);
+};
+
 export const deleteWordFromDifficult = (word: string, idWord: string, idUser: string) => {
   document.body.querySelector(`.difficult-button-${word}`)?.addEventListener('click', async ({ target }) => {
     const difficultButtonElement = target as HTMLButtonElement;
@@ -15,10 +23,3 @@ export const deleteWordFromDifficult = (word: string, idWord: string, idUser: st
     }
   });
 };
-
-export const checkWordsOfDictionary = async () => {
-  const userDataForBook = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
-  const wordsForDictionary = await getUserAggregatedHardWords(userDataForBook.userId);
-  const countOfwordIndictionary = wordsForDictionary[0].paginatedResults.length;
-  checkCountOfWord(countOfwordIndictionary);
-}

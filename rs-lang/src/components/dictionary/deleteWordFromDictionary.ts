@@ -3,7 +3,6 @@ import { userDataLocalStorage } from '../../utilities/api/config';
 import { difficultClassName } from '../config';
 import { checkCountOfWord } from './createWordsOfDictionary';
 
-
 export const checkWordsOfDictionary = async () => {
   const userDataForBook = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
   const wordsForDictionary = await getUserAggregatedHardWords(userDataForBook.userId);

@@ -8,7 +8,6 @@ import { hiddenClassName, boxGamesClassName, infoClassName } from '../config';
 import { switchAudio } from '../schoolbook/switchAudio';
 import { deleteWordFromDifficult } from './deleteWordFromDictionary';
 
-
 export const checkCountOfWord = (countOfwordIndictionary: number) => {
   const cardOfBookElement = document.getElementById(boxCardsIdName) as HTMLElement;
   if (countOfwordIndictionary === 0) {

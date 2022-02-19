@@ -4,11 +4,14 @@ import { boxCardsIdName } from '../../pages/dictionary/config';
 import { getUserAggregatedHardWords } from '../../utilities/api';
 import { userDataLocalStorage } from '../../utilities/api/config';
 import { cleanUp } from '../../utilities/cleanUp';
-import { audioGameClassName, sprintGameClassName, gameAudioElement, gameSprintElement, hiddenClassName, boxGamesClassName, infoClassName, cardOfBookElement } from '../config';
+import { hiddenClassName, boxGamesClassName, infoClassName } from '../config';
 import { switchAudio } from '../schoolbook/switchAudio';
-import { deleteWordFromDifficult, checkWordsOfDictionary } from './deleteWordFromDictionary';
+import { deleteWordFromDifficult } from './deleteWordFromDictionary';
+
+//  export const cardOfBookElement = document.getElementById(boxCardsIdName) as HTMLElement;
 
 export const createWordsOfDictionary = async () => {
+  const cardOfBookElement = document.getElementById(boxCardsIdName) as HTMLElement;
   
   cleanUp(cardOfBookElement);
 
@@ -31,6 +34,7 @@ export const createWordsOfDictionary = async () => {
 };
 
 export const checkCountOfWord = (countOfwordIndictionary:number) => {
+  const cardOfBookElement = document.getElementById(boxCardsIdName) as HTMLElement;
   if (countOfwordIndictionary === 0) {
     cardOfBookElement.innerHTML = 'У вас нет "Сложных слов"';
     document.body.querySelector(boxGamesClassName)?.classList.add(hiddenClassName);

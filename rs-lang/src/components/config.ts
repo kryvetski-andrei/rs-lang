@@ -1,4 +1,4 @@
-import { boxCardsIdName } from "../pages/schoolbook/config";
+
 
 export const MAX_NUMBER_OF_WORDS_PER_PAGE = 30;
 
@@ -12,7 +12,7 @@ export const markOfLearnedWord = 'learn';
 export const markOfDifficultWord = 'hard';
 export const markOfNot = 'no';
 export const infoClassName ='info-dictionary';
-export const cardOfBookElement = document.getElementById(boxCardsIdName) as HTMLElement;
+
 
 export const sprintGameClassName = '.sprint-game';
 export const audioGameClassName = '.audio-game';

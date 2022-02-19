@@ -8,8 +8,6 @@ import { hiddenClassName, boxGamesClassName, infoClassName } from '../config';
 import { switchAudio } from '../schoolbook/switchAudio';
 import { deleteWordFromDifficult } from './deleteWordFromDictionary';
 
-//  export const cardOfBookElement = document.getElementById(boxCardsIdName) as HTMLElement;
-
 export const createWordsOfDictionary = async () => {
   const cardOfBookElement = document.getElementById(boxCardsIdName) as HTMLElement;
   

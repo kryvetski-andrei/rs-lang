@@ -10,7 +10,6 @@ import {
 } from '../config';
 import { checkStatusPage } from './checkStatusOfWord';
 
-
 export const toggleLearnButton = (word: string, idWord: string, idUser: string) => {
   document.body.querySelector(`.learn-button-${word}`)?.addEventListener('click', async ({ target }) => {
     const learnButtonElement = target as HTMLButtonElement;

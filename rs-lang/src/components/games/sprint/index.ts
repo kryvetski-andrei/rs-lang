@@ -7,20 +7,39 @@ import { setCountdown } from './utils/timer';
 import { generatePairs } from './utils/getWordsPairs';
 import { setAnswer, showCurrentPair } from './utils/gamePlay';
 import { getWordsForGame } from '../utils/getWordsForGame';
+import { IResults } from '../../../interfaces';
+import { setResults } from '../utils/setResults';
+import { initialStatistics } from '../utils/initialStatistics';
+import { setNewWord, setSprintBestSeries, setSprintGameStat } from '../utils/setStatistics';
 
 const startGameSprintGame = async () => {
+  let currentPair = 0;
+  const sprintRsults: IResults = {
+    words: [],
+    bestSeries: 0,
+    currentSeries: 0,
+  };
   const sprintContainer = document.body.querySelector(`#${sprintPageId}`) as HTMLElement;
   sprintContainer.innerHTML = '';
   renderMarkup(sprintContainer, sprintGameMarkup);
   setCountdown();
   const wordPairs = generatePairs(await getWordsForGame());
-  showCurrentPair(wordPairs);
+  showCurrentPair(wordPairs[currentPair]);
   setTimeout(() => {
     showResults(wordPairs, sprintContainer);
+    setSprintBestSeries(initialStatistics, sprintRsults);
+    currentPair = 0;
+    console.log(initialStatistics);
   }, TIMER_DURATION);
   document.body.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', ({ target }) => {
     if ((target as Element).tagName === 'BUTTON') {
-      setAnswer(wordPairs, (target as Element).className);
+      setAnswer(wordPairs[currentPair], (target as Element).className);
+      setResults(sprintRsults, wordPairs[currentPair]);
+      setNewWord(initialStatistics, wordPairs[currentPair]);
+      setSprintGameStat(initialStatistics, wordPairs[currentPair]);
+      currentPair += 1;
+      showCurrentPair(wordPairs[currentPair]);
+      console.log(sprintRsults);
     }
   });
 };

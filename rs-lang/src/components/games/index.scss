@@ -83,6 +83,7 @@
       ul {
         margin-left: 30px;
         li {
+          display: flex;
           font-size: 16px;
         }
       }
@@ -109,7 +110,8 @@
       }
     }
   }
-  .answer-buttons {
+  .answer-buttons,
+  .next-question-button-container {
     margin: 30px auto;
     button {
       border-radius: 10px;
@@ -125,6 +127,10 @@
       opacity: 0.5;
       &:hover {
         opacity: 1;
+      }
+      .next-question-button{
+        position: relative;
+        top: 100px;
       }
     }
     .true {

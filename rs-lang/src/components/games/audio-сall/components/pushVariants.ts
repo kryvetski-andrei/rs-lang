@@ -1,4 +1,5 @@
 import { IAudioCallQuestion } from '../../../../interfaces';
+import { cleanUp } from '../../../../utilities/cleanUp';
 import { answersContainerClassName } from '../../config';
 import { audioDataAttribute, playAudioIconClassName, variantItemClassName } from '../config';
 
@@ -11,7 +12,7 @@ const getQestionVariantDOMElement = (qestionVariant: string) => {
 
 export const mountQuestionVariantsDOMelements = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {
   const answersContainers = document.body.querySelector(`.${answersContainerClassName}`) as HTMLElement;
-  answersContainers.innerHTML = '';
+  cleanUp(answersContainers);
   document.body
     .querySelector(`.${playAudioIconClassName}`)
     ?.setAttribute(`${audioDataAttribute}`, `${quizVariants[currentQuestion].audio}`);

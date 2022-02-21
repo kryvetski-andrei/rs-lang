@@ -7,12 +7,19 @@ import { setCountdown } from './utils/timer';
 import { generatePairs } from './utils/getWordsPairs';
 import { setAnswer, showCurrentPair } from './utils/gamePlay';
 import { getWordsForGame } from '../utils/getWordsForGame';
-import { IResults } from '../../../interfaces';
+import { IPair, IResults } from '../../../interfaces';
 import { setResults } from '../utils/setResults';
-import { initialStatistics } from '../utils/initialStatistics';
 import { setNewWord, setSprintBestSeries, setSprintGameStat } from '../utils/setStatistics';
 import { TokenService } from '../../../utilities/api/utilities';
 import { getUserStatistics } from '../../../utilities/api';
+import { cleanUp } from '../../../utilities/cleanUp';
+
+const stopGame = async (wordPairs: Array<IPair>, sprintContainer: HTMLElement, sprintRsults: IResults) => {
+  const { userId } = TokenService.getUser();
+  const userStatistics = await getUserStatistics(userId);
+  showResults(wordPairs, sprintContainer);
+  setSprintBestSeries(userStatistics, sprintRsults);
+};
 
 const startGameSprintGame = async () => {
   let currentPair = 0;
@@ -22,18 +29,24 @@ const startGameSprintGame = async () => {
     currentSeries: 0,
   };
   const sprintContainer = document.body.querySelector(`#${sprintPageId}`) as HTMLElement;
-  sprintContainer.innerHTML = '';
+  cleanUp(sprintContainer);
   renderMarkup(sprintContainer, sprintGameMarkup);
   setCountdown();
   const wordPairs = generatePairs(await getWordsForGame());
   showCurrentPair(wordPairs[currentPair]);
-  setTimeout(async () => {
-    const { userId } = TokenService.getUser();
-    const userStatistics = await getUserStatistics(userId);
-    showResults(wordPairs, sprintContainer);
-    setSprintBestSeries(userStatistics, sprintRsults);
+  const timeOutId = setTimeout(async () => {
+    stopGame(wordPairs, sprintContainer, sprintRsults);
     currentPair = 0;
   }, TIMER_DURATION);
+
+  window.addEventListener('hashchange', async () => {
+    clearTimeout(timeOutId);
+    const { userId } = TokenService.getUser();
+    const userStatistics = await getUserStatistics(userId);
+    setSprintBestSeries(userStatistics, sprintRsults);
+    currentPair = 0;
+  });
+
   document.body.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', async ({ target }) => {
     const { userId } = TokenService.getUser();
     const userStatistics = await getUserStatistics(userId);
@@ -44,6 +57,42 @@ const startGameSprintGame = async () => {
       setNewWord(userStatistics, wordPairs[currentPair]);
       setSprintGameStat(userStatistics, wordPairs[currentPair]);
       currentPair += 1;
+      if (currentPair === wordPairs.length) {
+        clearTimeout(timeOutId);
+        stopGame(wordPairs, sprintContainer, sprintRsults);
+        currentPair = 0;
+      }
+      showCurrentPair(wordPairs[currentPair]);
+    }
+  });
+
+  window.addEventListener('keyup', async (e) => {
+    const { userId } = TokenService.getUser();
+    const userStatistics = await getUserStatistics(userId);
+    if (e.code === 'ArrowRight') {
+      setAnswer(wordPairs[currentPair], 'true');
+      setResults(sprintRsults, wordPairs[currentPair]);
+      setNewWord(userStatistics, wordPairs[currentPair]);
+      setSprintGameStat(userStatistics, wordPairs[currentPair]);
+      currentPair += 1;
+      if (currentPair === wordPairs.length) {
+        clearTimeout(timeOutId);
+        stopGame(wordPairs, sprintContainer, sprintRsults);
+        currentPair = 0;
+      }
+      showCurrentPair(wordPairs[currentPair]);
+    }
+    if (e.code === 'ArrowLeft') {
+      setAnswer(wordPairs[currentPair], 'false');
+      setResults(sprintRsults, wordPairs[currentPair]);
+      setNewWord(userStatistics, wordPairs[currentPair]);
+      setSprintGameStat(userStatistics, wordPairs[currentPair]);
+      currentPair += 1;
+      if (currentPair === wordPairs.length) {
+        clearTimeout(timeOutId);
+        stopGame(wordPairs, sprintContainer, sprintRsults);
+        currentPair = 0;
+      }
       showCurrentPair(wordPairs[currentPair]);
     }
   });

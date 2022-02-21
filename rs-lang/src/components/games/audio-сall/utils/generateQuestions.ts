@@ -5,6 +5,7 @@ import { QUESTIONS_COUNT, WRONG_VARIANTS_COUNT } from '../config';
 
 const getRandomVariants = (wordsData: Array<IWord>, rightAnswer: string, index: number): Array<string> => {
   const array = wordsData.map(({ wordTranslate }) => wordTranslate);
+
   array.splice(index, 1);
   shuffle(array);
   const variants = getFirstElementsOfArray(array, WRONG_VARIANTS_COUNT);
@@ -15,12 +16,13 @@ const getRandomVariants = (wordsData: Array<IWord>, rightAnswer: string, index: 
 
 export const generateQuizQuestions = (wordsData: Array<IWord>): Array<IAudioCallQuestion> => {
   shuffle(wordsData);
-  return wordsData.splice(0, QUESTIONS_COUNT).map(({ id, audio, wordTranslate, word }, index) => {
+  const splicedWordsData = wordsData.splice(0, wordsData.length);
+  return splicedWordsData.map(({ id, audio, wordTranslate, word }, index) => {
     return {
       id,
       audio,
       rightAnswer: wordTranslate,
-      variants: getRandomVariants(wordsData, wordTranslate, index),
+      variants: getRandomVariants(splicedWordsData, wordTranslate, index),
       wordsPair: `${word} — ${wordTranslate}`,
     };
   });

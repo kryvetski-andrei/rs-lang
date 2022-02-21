@@ -1,6 +1,7 @@
 import { unitСheckbox } from '../config';
 
 export const getDificultSelectionContainer = `
+  <p class="game-description">Выбирете сложность</p>
   <div class="difficulty-selection-container">
     <input class="${unitСheckbox}" type="radio" id="1" name="unit"><label class="unit-item" for="1">A1</label>
     <input class="${unitСheckbox}" type="radio" id="2" name="unit"><label class="unit-item" for="2">A2</label>

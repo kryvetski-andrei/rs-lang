@@ -4,8 +4,8 @@ import { apiBaseURL } from '../../utilities/api/config';
 export const wrapOfDictionary = `
   <div class="forms">
     <div class="game-controls">
-      <button class="audio-game" title="audio-game"></button>
-      <button class="sprint-game" title="sprint-game"></button>
+      <a href="#/audio-call" class="audio-game" title="audio-game"></a>
+      <a href="#/sprint" class="sprint-game" title="sprint-game"></a>
     </div>
   </div>
   <div class="cards-wrap" id="cards-block"></div>

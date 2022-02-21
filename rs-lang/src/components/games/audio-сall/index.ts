@@ -9,29 +9,23 @@ import { setResults } from '../utils/setResults';
 import { mountQuestionVariantsDOMelements } from './components/pushVariants';
 import { renderAudioCallGame } from './components/renderAudioCallGame';
 import { showRightAnswer } from './components/showRightAnswer';
-import {
-  audioCallPageId,
-  audioDataAttribute,
-  playAudioIconClassName,
-  QUESTIONS_COUNT,
-  rightAnswerViewerClassName,
-} from './config';
+import { audioCallPageId, audioDataAttribute, playAudioIconClassName, rightAnswerViewerClassName } from './config';
 import { audioCallPageMarkup } from './markup';
 import { disableQuestionVariants } from './utils/disableButtons';
 import { generateQuizQuestions } from './utils/generateQuestions';
 import { playAudio } from './utils/playAudio';
-import { initialStatistics } from '../utils/initialStatistics';
 import { getUserStatistics } from '../../../utilities/api';
 import { TokenService } from '../../../utilities/api/utilities';
 
 const setAnswer = async (currentQuestion: IAudioCallQuestion, target: HTMLElement) => {
   const { userId } = TokenService.getUser();
   const userStatistics = await getUserStatistics(userId);
-
   currentQuestion.userCorrect = currentQuestion.rightAnswer === target.innerHTML;
+  const { userCorrect } = currentQuestion;
   playAnswerSound(currentQuestion.userCorrect);
   setNewWord(userStatistics, currentQuestion);
   setAudioCallGameStat(userStatistics, currentQuestion);
+  console.log(currentQuestion.userCorrect);
 };
 
 const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {
@@ -63,17 +57,16 @@ const startGameAudioGame = async () => {
     const { userId } = TokenService.getUser();
     const userStatistics = await getUserStatistics(userId);
     const targetElement = target as HTMLElement;
-
     if (targetElement.tagName === 'BUTTON') {
-      if (currentQuestion === QUESTIONS_COUNT - 1) {
-        setAnswer(quizVariants[currentQuestion], targetElement);
+      if (currentQuestion === quizVariants.length - 1) {
+        await setAnswer(quizVariants[currentQuestion], targetElement);
         setResults(audioCallRsults, quizVariants[currentQuestion]);
         currentQuestion = 0;
         showResults(quizVariants, audioCallContainer);
         setAudioCallBestSeries(userStatistics, audioCallRsults);
       } else {
-        setAnswer(quizVariants[currentQuestion], targetElement);
-        setResults(audioCallRsults, quizVariants[currentQuestion]); // NOT WORKING?
+        await setAnswer(quizVariants[currentQuestion], targetElement);
+        setResults(audioCallRsults, quizVariants[currentQuestion]);
         showRightAnswer(quizVariants[currentQuestion], targetElement);
         disableQuestionVariants();
         currentQuestion += 1;

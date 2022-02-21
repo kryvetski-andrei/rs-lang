@@ -1,5 +1,5 @@
 import { IWord, IWordDictionaryElement } from '../../../interfaces';
-import { getUserAggregatedHardWords, getWords } from '../../../utilities/api';
+import { getUserAggregatedHardWords, getUserWord, getUserWords, getWords } from '../../../utilities/api';
 import { userDataLocalStorage } from '../../../utilities/api/config';
 import {
   dictionaryPageName,
@@ -13,26 +13,36 @@ import { getCurrentGroupOfWords } from './getCurrentGroup';
 import { parseDictionaryElement } from './parseDictionaryElement';
 
 export const getWordsForGame = async (): Promise<any> => {
+  const { userId } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`) as string);
   console.log(localStorage.getItem(previousPage));
   if (localStorage.getItem(previousPage) === gamesPageName) {
     return getWords(1, getCurrentGroupOfWords());
   }
   if (localStorage.getItem(previousPage) === schoolbookPageName) {
-    const test = await getWords(Number(localStorage.getItem(pageOfBook)), Number(localStorage.getItem(groupOfBook)));
-    const wordIDs = test.map(({ id }: any) => {
-      return id;
+    const wordsOfPage = await getWords(
+      Number(localStorage.getItem(pageOfBook)),
+      Number(localStorage.getItem(groupOfBook))
+    );
+    const userWords = await getUserWords(userId);
+
+    const wordsForGame = wordsOfPage.filter((wordOfPage: any) => {
+      for (const userWord of userWords) {
+        if (wordOfPage.id === userWord.wordId && userWord.optional.learn === 'learn') {
+          return false;
+        }
+      }
+      return true;
     });
-    console.log(test);
-    return test;
+    console.log(wordsForGame);
+    return wordsForGame;
   }
   if (localStorage.getItem(previousPage) === dictionaryPageName) {
     console.log(localStorage.getItem(previousPage));
-    const { userId } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`) as string);
     console.log(userId);
     const tet = await getUserAggregatedHardWords(userId);
     const out: Array<IWord> = tet[0].paginatedResults.map((dictionaryElement: IWordDictionaryElement) => {
       return parseDictionaryElement(dictionaryElement);
-    })
+    });
     console.log(out);
     return out;
   }

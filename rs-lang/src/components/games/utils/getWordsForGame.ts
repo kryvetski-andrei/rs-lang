@@ -1,5 +1,5 @@
 import { IWord, IWordDictionaryElement } from '../../../interfaces';
-import { getUserAggregatedHardWords, getUserWord, getUserWords, getWords } from '../../../utilities/api';
+import { getUserAggregatedHardWords, getUserWords, getWords } from '../../../utilities/api';
 import { userDataLocalStorage } from '../../../utilities/api/config';
 import {
   dictionaryPageName,
@@ -37,13 +37,12 @@ export const getWordsForGame = async (): Promise<any> => {
     return wordsForGame;
   }
   if (localStorage.getItem(previousPage) === dictionaryPageName) {
-    console.log(localStorage.getItem(previousPage));
-    console.log(userId);
-    const tet = await getUserAggregatedHardWords(userId);
-    const out: Array<IWord> = tet[0].paginatedResults.map((dictionaryElement: IWordDictionaryElement) => {
-      return parseDictionaryElement(dictionaryElement);
-    });
-    console.log(out);
-    return out;
+    const hardUserWords = await getUserAggregatedHardWords(userId);
+    const wordsFromDictionary: Array<IWord> = hardUserWords[0].paginatedResults.map(
+      (dictionaryElement: IWordDictionaryElement) => {
+        return parseDictionaryElement(dictionaryElement);
+      }
+    );
+    return wordsFromDictionary;
   }
 };

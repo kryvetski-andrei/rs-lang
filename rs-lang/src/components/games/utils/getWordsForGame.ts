@@ -14,9 +14,9 @@ import { parseDictionaryElement } from './parseDictionaryElement';
 
 export const getWordsForGame = async (): Promise<any> => {
   const { userId } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`) as string);
-  console.log(localStorage.getItem(previousPage));
   if (localStorage.getItem(previousPage) === gamesPageName) {
-    return getWords(1, getCurrentGroupOfWords());
+    const randomPage = Math.random() * (19 - 0 + 1) + 0;
+    return getWords(Math.floor(randomPage), getCurrentGroupOfWords());
   }
   if (localStorage.getItem(previousPage) === schoolbookPageName) {
     const wordsOfPage = await getWords(
@@ -33,7 +33,6 @@ export const getWordsForGame = async (): Promise<any> => {
       }
       return true;
     });
-    console.log(wordsForGame);
     return wordsForGame;
   }
   if (localStorage.getItem(previousPage) === dictionaryPageName) {

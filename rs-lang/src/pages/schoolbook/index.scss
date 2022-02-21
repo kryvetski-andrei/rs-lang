@@ -47,6 +47,16 @@
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
+.all {
+  background-color: var(--light-smoke);
+  opacity: 0.5;
+}
+
+.inactive-link {
+  pointer-events: none;
+  cursor: default;
+}
+
 .learn-button {
   background-image: url(../../assets/graduation_cap_icon.svg);
   width: 35px;
@@ -91,21 +101,18 @@
   background-color: yellow;
 }
 
-.line{
+.line {
   width: 20px;
 }
 
-.image {
-  object-fit: cover;
-}
 
-.area-learn-difficult{
+.area-learn-difficult {
   padding-top: 12px;
   // display: inline-flex;
   flex-direction: column;
 }
 
-.audio-button{
+.audio-button {
   background-color:var(--one);
   border-radius: 35px;
   border: 1px solid white;
@@ -121,7 +128,7 @@
 }
 
 .audio-button:hover,
-.audio-button:active{
+.audio-button:active {
   background-color:var(--smoke);
   border-radius: 35px;
   border: 1px solid var(--tundora);
@@ -142,20 +149,20 @@
 
 .word,
 .word-example,
-.word-meaning{
+.word-meaning {
   padding-top: 15px;
 }
 
-.word{
+.word {
   font-weight: bold;
   font-size: 22px;
 }
 
-.word-example{
+.word-example {
   font-style:italic;
 }
 
-.page-book{
+.page-book {
   background-color: var(--light-smoke);
   
 }
@@ -177,14 +184,14 @@
   justify-content:space-between;
 }
 
-.unit-controls{
+.unit-controls {
   display: flex;
   flex-wrap:wrap;
   justify-content: start;
   align-items: center;
 }
 
-.units-text{
+.units-text {
   font-size: 28px;
 }
 
@@ -221,7 +228,7 @@
   background-color: var(--six) ; 
 }
 
-.pagination-book{
+.pagination-book {
   display: flex;
   align-content: center;
   position: sticky;
@@ -255,7 +262,7 @@
   background: var(--voodoo);
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
@@ -279,14 +286,14 @@
   transition: .3s;
 }
 
-.audio-game{
+.audio-game {
   background-image: url(../../assets/headphone.svg);
   background-size:30px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.sprint-game{
+.sprint-game {
   background-image: url(../../assets/sports.svg);
   background-size:30px;
   background-repeat: no-repeat;

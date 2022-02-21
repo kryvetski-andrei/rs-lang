@@ -27,8 +27,8 @@ export const updateStatePageOfBook = async () => {
 
 export const rerenderPageOfBook = () => {
   createCardsOfBook();
-  rerenderPagination();
   updateStatePageOfBook();
+  rerenderPagination();
 };
 
 export const switchPageOfBook = () => {

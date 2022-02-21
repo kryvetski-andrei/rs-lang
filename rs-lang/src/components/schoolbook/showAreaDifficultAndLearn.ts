@@ -8,6 +8,7 @@ import {
   markOfNot,
   studiedClassName,
 } from '../config';
+import { checkStatusPage } from './checkStatusOfWord';
 
 export const toggleLearnButton = (word: string, idWord: string, idUser: string) => {
   document.body.querySelector(`.learn-button-${word}`)?.addEventListener('click', async ({ target }) => {
@@ -27,6 +28,7 @@ export const toggleLearnButton = (word: string, idWord: string, idUser: string) 
       delete statisticsData.id;
       await updateUserStatistics(idUser, statisticsData);
       (document.body.querySelector(`.difficult-button-${word}`) as HTMLButtonElement).disabled = false;
+      checkStatusPage();
     } else {
       learnButtonElement.classList.add(studiedClassName);
       const learnOption = { difficulty: markOfNot, optional: { learn: markOfLearnedWord, word } };
@@ -45,6 +47,7 @@ export const toggleLearnButton = (word: string, idWord: string, idUser: string) 
       delete statisticsData.id;
       await updateUserStatistics(idUser, statisticsData);
       (document.body.querySelector(`.difficult-button-${word}`) as HTMLButtonElement).disabled = true;
+      checkStatusPage();
     }
   });
 };
@@ -57,6 +60,7 @@ export const toggleDifficultButton = (word: string, idWord: string, idUser: stri
     await postUsersWords(idUser, idWord, difficultOption);
     difficultButtonElement.disabled = true;
     (document.body.querySelector(`.learn-button-${word}`) as HTMLButtonElement).disabled = true;
+    checkStatusPage();
   });
 };
 

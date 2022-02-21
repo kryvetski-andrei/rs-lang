@@ -3,7 +3,7 @@ import { apiBaseURL } from '../../utilities/api/config';
 
 export const wrapOfDictionary = `
   <div class="forms">
-    <div class="game-controls games-dictionary hidden"
+    <div class="game-controls games-dictionary hidden">
       <a href="#/audio-call" class="audio-game" title="audio-game"></a>
       <a href="#/sprint" class="sprint-game" title="sprint-game"></a>
     </div>

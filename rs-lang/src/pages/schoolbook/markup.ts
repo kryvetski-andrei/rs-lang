@@ -4,5 +4,5 @@ import { schoolbookPageId } from './config';
 import './index.scss';
 
 export const schoolbookPageMarkup = `
-  <section id="${schoolbookPageId}" class="${pageClassName}"><h2 class="title-schoolbook">Учебник</h2></section>
+  <section id="${schoolbookPageId}" class="${pageClassName}"><h2 class="title-schoolbook"></h2></section>
 `;

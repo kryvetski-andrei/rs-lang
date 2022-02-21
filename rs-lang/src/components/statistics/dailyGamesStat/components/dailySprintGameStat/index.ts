@@ -63,7 +63,7 @@ export const mountDailySprintGameStatDOMElement = async (parentDOMElement: HTMLE
         {
           label: 'My First Dataset',
           data: [persentOfCorrectAnswers, persentOfIncorrectAnswers],
-          backgroundColor: ['green', 'red'],
+          backgroundColor: ['#2f9ce0', '#03304c'],
         },
       ],
     },

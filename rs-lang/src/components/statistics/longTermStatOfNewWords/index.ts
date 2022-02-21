@@ -26,7 +26,7 @@ export const mountLongTermStatOfNewWordsDOMElement = async (parentDOMElement: HT
         fill: true,
         borderColor: 'yellow',
         tension: 0.1,
-        backgroundColor: 'yellow',
+        backgroundColor: '#2f9ce0',
       },
     ],
   };
@@ -58,7 +58,7 @@ export const mountLongTermStatOfNewWordsDOMElement = async (parentDOMElement: HT
         y: {
           title: {
             display: true,
-            text: 'Количество изученных слов',
+            text: 'Количество новых слов',
           },
           min: 0,
           ticks: {

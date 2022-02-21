@@ -24,15 +24,15 @@ export const cardOfDictionary = ({
   textExampleTranslate,
 }: IWordDictionaryElement) => `
   <div class="card-book" id="${_id}" data-name="${word}">
-    <img src="${apiBaseURL}/${image}" class="image" width="195" height="130" alt="img-${word}">
-    <div class="english-words">
+    <img src="${apiBaseURL}/${image}" class="image" width="100%" height="150" alt="img-${word}">
+    <div class="english-words book-words">
       <div class="word">${word} ${transcription} 
       <button class="audio-button audio-button-${word} " data-audio="${audio}" title="Произношение"></button>
       </div>
       <div class="word-meaning">${textMeaning}</div>
       <div class="word-example">${textExample}</div>
     </div>
-    <div class="russian-words">
+    <div class="russian-words book-words">
       <div class="word"> ${wordTranslate} </div>
       <div class="word-meaning">${textMeaningTranslate}</div>
       <div class="word-example">${textExampleTranslate}</div>

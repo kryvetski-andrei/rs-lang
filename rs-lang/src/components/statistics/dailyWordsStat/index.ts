@@ -78,7 +78,7 @@ export const mountDailyWordsStatDOMElement = async (parentDOMElement: HTMLElemen
         {
           label: 'My First Dataset',
           data: [persentOfCorrectAnswers, persentOfIncorrectAnswers],
-          backgroundColor: ['green', 'red'],
+          backgroundColor: ['#6f1abf', '#3c086c'],
         },
       ],
     },

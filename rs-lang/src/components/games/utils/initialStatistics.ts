@@ -9,11 +9,11 @@ export const initialStatistics = {
     },
     audioCallGameStat: {
       longestSeries: 0,
-      words: [],
+      // words: [],
     },
     sprintGameStat: {
       longestSeries: 0,
-      words: [],
+      // words: [],
     },
   },
 };

@@ -21,12 +21,17 @@ import { disableQuestionVariants } from './utils/disableButtons';
 import { generateQuizQuestions } from './utils/generateQuestions';
 import { playAudio } from './utils/playAudio';
 import { initialStatistics } from '../utils/initialStatistics';
+import { getUserStatistics } from '../../../utilities/api';
+import { TokenService } from '../../../utilities/api/utilities';
 
 const setAnswer = async (currentQuestion: IAudioCallQuestion, target: HTMLElement) => {
+  const { userId } = TokenService.getUser();
+  const userStatistics = await getUserStatistics(userId);
+
   currentQuestion.userCorrect = currentQuestion.rightAnswer === target.innerHTML;
   playAnswerSound(currentQuestion.userCorrect);
-  setNewWord(initialStatistics, currentQuestion);
-  setAudioCallGameStat(initialStatistics, currentQuestion);
+  setNewWord(userStatistics, currentQuestion);
+  setAudioCallGameStat(userStatistics, currentQuestion);
 };
 
 const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {
@@ -55,18 +60,20 @@ const startGameAudioGame = async () => {
   });
 
   audioCallContainer.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', async ({ target }) => {
+    const { userId } = TokenService.getUser();
+    const userStatistics = await getUserStatistics(userId);
     const targetElement = target as HTMLElement;
+
     if (targetElement.tagName === 'BUTTON') {
       if (currentQuestion === QUESTIONS_COUNT - 1) {
         setAnswer(quizVariants[currentQuestion], targetElement);
         setResults(audioCallRsults, quizVariants[currentQuestion]);
         currentQuestion = 0;
         showResults(quizVariants, audioCallContainer);
-        setAudioCallBestSeries(initialStatistics, audioCallRsults);
-        console.log(initialStatistics);
+        setAudioCallBestSeries(userStatistics, audioCallRsults);
       } else {
         setAnswer(quizVariants[currentQuestion], targetElement);
-        setResults(audioCallRsults, quizVariants[currentQuestion]);
+        setResults(audioCallRsults, quizVariants[currentQuestion]); // NOT WORKING?
         showRightAnswer(quizVariants[currentQuestion], targetElement);
         disableQuestionVariants();
         currentQuestion += 1;
@@ -74,7 +81,6 @@ const startGameAudioGame = async () => {
           changeQuestion(quizVariants, currentQuestion);
         }, 3000);
       }
-      console.log(audioCallRsults);
     }
   });
 };

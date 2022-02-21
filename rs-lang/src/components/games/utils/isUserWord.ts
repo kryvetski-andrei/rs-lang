@@ -1,10 +1,8 @@
-import { getUserWord } from '../../../utilities/api';
+import { getUserWord, getUserWords } from '../../../utilities/api';
 
 export const isUserWord = async (gameWordId: string, userId: string) => {
-  try {
-    await getUserWord(userId, gameWordId);
-    return true;
-  } catch {
-    return false;
-  }
+  const userWords = await getUserWords(userId);
+  return userWords.some((userWord: any) => {
+    return gameWordId === userWord.id;
+  });
 };

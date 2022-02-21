@@ -1,93 +1,55 @@
-import { IAudioCallQuestion, IResults } from '../../../interfaces';
 import { renderMarkup } from '../../../utilities/renderMarkup';
 import { answersContainerClassName, startGameButton } from '../config';
-import { getWordsForGame } from '../utils/getWordsForGame';
-import { playAnswerSound } from '../utils/playAnswerSound';
-import { setAudioCallBestSeries, setAudioCallGameStat, setNewWord } from '../utils/setStatistics';
-import { setResults } from '../utils/setResults';
-import { getUserStatistics } from '../../../utilities/api';
-import { TokenService } from '../../../utilities/api/utilities';
-import {
-  audioCallPageId,
-  audioDataAttribute,
-  playAudioIconClassName,
-  QUESTIONS_COUNT,
-  rightAnswerViewerClassName,
-} from '../audio-сall/config';
-import { mountQuestionVariantsDOMelements } from '../audio-сall/components/pushVariants';
-import { playAudio } from '../audio-сall/utils/playAudio';
-import { generateQuizQuestions } from '../audio-сall/utils/generateQuestions';
-import { renderAudioCallGame } from '../audio-сall/components/renderAudioCallGame';
+import { sprintGameMarkup, sprintPageMarkup } from './markup';
+import { sprintPageId, TIMER_DURATION } from './config';
 import { showResults } from './utils/endGame';
-import { showRightAnswer } from '../audio-сall/components/showRightAnswer';
-import { disableQuestionVariants } from '../audio-сall/utils/disableButtons';
-import { audioCallPageMarkup } from '../audio-сall/markup';
+import { setCountdown } from './utils/timer';
+import { generatePairs } from './utils/getWordsPairs';
+import { setAnswer, showCurrentPair } from './utils/gamePlay';
+import { getWordsForGame } from '../utils/getWordsForGame';
+import { IResults } from '../../../interfaces';
+import { setResults } from '../utils/setResults';
+import { initialStatistics } from '../utils/initialStatistics';
+import { setNewWord, setSprintBestSeries, setSprintGameStat } from '../utils/setStatistics';
+import { cleanUp } from '../../../utilities/cleanUp';
+import { getNewTokens, getUserAggregatedHardWords } from '../../../utilities/api';
+import { userDataLocalStorage, usersPath, aggregatedWords } from '../../../utilities/api/config';
 
-const setAnswer = async (currentQuestion: IAudioCallQuestion, target: HTMLElement) => {
-  const { userId } = TokenService.getUser();
-  const userStatistics = await getUserStatistics(userId);
 
-  currentQuestion.userCorrect = currentQuestion.rightAnswer === target.innerHTML;
-  playAnswerSound(currentQuestion.userCorrect);
-  setNewWord(userStatistics, currentQuestion);
-  setAudioCallGameStat(userStatistics, currentQuestion);
-};
-
-const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {
-  (document.body.querySelector(`.${rightAnswerViewerClassName}`) as HTMLElement).innerHTML = '';
-  mountQuestionVariantsDOMelements(quizVariants, currentQuestion);
-  playAudio(document.body.querySelector(`.${playAudioIconClassName}`)?.getAttribute(`${audioDataAttribute}`) as string);
-};
-
-const startGameAudioGame = async () => {
-  const audioCallRsults: IResults = {
+const startGameSprintGame = async () => {
+  let currentPair = 0;
+  const sprintRsults: IResults = {
     words: [],
     bestSeries: 0,
     currentSeries: 0,
   };
-  let currentQuestion = 0;
-  const quizVariants = generateQuizQuestions(await getWordsForGame());
-  const audioCallContainer = document.body.querySelector(`#${audioCallPageId}`) as HTMLElement;
-  renderAudioCallGame(audioCallContainer, quizVariants, currentQuestion);
-
-  const audioButton = document.body.querySelector(`.${playAudioIconClassName}`);
-
-  playAudio(audioButton?.getAttribute(`${audioDataAttribute}`) as string);
-
-  audioCallContainer.querySelector(`.${playAudioIconClassName}`)?.addEventListener('click', () => {
-    playAudio(audioButton?.getAttribute(`${audioDataAttribute}`) as string);
-  });
-
-  audioCallContainer.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', async ({ target }) => {
-    const { userId } = TokenService.getUser();
-    const userStatistics = await getUserStatistics(userId);
-    const targetElement = target as HTMLElement;
-
-    if (targetElement.tagName === 'BUTTON') {
-      if (currentQuestion === QUESTIONS_COUNT - 1) {
-        setAnswer(quizVariants[currentQuestion], targetElement);
-        setResults(audioCallRsults, quizVariants[currentQuestion]);
-        currentQuestion = 0;
-        showResults(quizVariants, audioCallContainer);
-        setAudioCallBestSeries(userStatistics, audioCallRsults);
-        console.log(userStatistics);
-      } else {
-        setAnswer(quizVariants[currentQuestion], targetElement);
-        setResults(audioCallRsults, quizVariants[currentQuestion]);
-        showRightAnswer(quizVariants[currentQuestion], targetElement);
-        disableQuestionVariants();
-        currentQuestion += 1;
-        setTimeout(() => {
-          changeQuestion(quizVariants, currentQuestion);
-        }, 3000);
-      }
-      console.log(audioCallRsults);
+  const sprintContainer = document.body.querySelector(`#${sprintPageId}`) as HTMLElement;
+  cleanUp(sprintContainer);
+  renderMarkup(sprintContainer, sprintGameMarkup);
+  setCountdown();
+  const wordPairs = generatePairs(await getWordsForGame());
+  showCurrentPair(wordPairs[currentPair]);
+  setTimeout(() => {
+    showResults(wordPairs, sprintContainer);
+    setSprintBestSeries(initialStatistics, sprintRsults);
+    currentPair = 0;
+    console.log(initialStatistics);
+  }, TIMER_DURATION);
+  document.body.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', ({ target }) => {
+    if ((target as Element).tagName === 'BUTTON') {
+      setAnswer(wordPairs[currentPair], (target as Element).className);
+      setResults(sprintRsults, wordPairs[currentPair]);
+      setNewWord(initialStatistics, wordPairs[currentPair]);
+      setSprintGameStat(initialStatistics, wordPairs[currentPair]);
+      currentPair += 1;
+      showCurrentPair(wordPairs[currentPair]);
+      console.log(sprintRsults);
     }
   });
 };
 
-export const mountAudioCallPageDOMElement = (parentDOMElement: HTMLElement) => {
-  renderMarkup(parentDOMElement, audioCallPageMarkup());
+export const mountSprintPageDOMElement = (parentDOMElement: HTMLElement) => {
+  renderMarkup(parentDOMElement, sprintPageMarkup());
   const buttonStartGame = document.querySelector(`.${startGameButton}`);
-  buttonStartGame?.addEventListener('click', startGameAudioGame, { once: true });
+  buttonStartGame?.addEventListener('click', startGameSprintGame, { once: true });
 };

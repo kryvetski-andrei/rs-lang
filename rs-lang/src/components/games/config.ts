@@ -7,5 +7,6 @@ export const answersContainerClassName = 'answer-buttons';
 export const previousPage = 'previousPage';
 export const gamesPageName = 'games';
 export const schoolbookPageName = 'schoolbook';
+export const dictionaryPageName = 'dictionary';
 export const pageOfBook = 'pageOfBook';
 export const groupOfBook = 'groupOfBook';

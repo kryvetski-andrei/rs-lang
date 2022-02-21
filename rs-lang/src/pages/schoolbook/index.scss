@@ -1,0 +1,301 @@
+:root {
+  --disable: #555;
+  --light-smoke:#ffffff;
+  --smoke:#9b8bab;
+  --rhino: #2b3462;
+  --voodoo: #4b3961;
+  --tundora:#4b4849;
+  --one: #ff000039;
+  --two: #ff73005c;
+  --three: #ffe10051;
+  --four: #6aff0050;
+  --five: #15d36a3e;
+  --six: #0156ff36;
+  --seven: #024384;
+}
+
+#schoolbook {
+  background-color: var(--light-smoke);
+}
+
+.book-words {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.cards-wrap {
+  margin: 0 auto;
+  display: grid;
+
+  width: 90%;
+  //Using auto-fill and auto-fit
+  grid-template-rows: repeat(2, minmax(150px, min-content));
+  grid-template-columns: repeat(auto-fill,100px);
+  grid-template-columns: repeat(auto-fit,100px);
+  grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+
+  // grid-auto-rows: 150px;
+  gap: 20px;
+}
+
+.card-book {
+  border: 3px solid white;
+  // margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.all {
+  background-color: var(--light-smoke);
+  opacity: 0.5;
+}
+
+.inactive-link {
+  pointer-events: none;
+  cursor: default;
+}
+
+.learn-button {
+  background-image: url(../../assets/graduation_cap_icon.svg);
+  width: 35px;
+  height: 35px;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  display: inline-block; /* Строчно-блочный элемент */
+  position: relative;
+}
+
+.difficult-button {
+  background-image: url(../../assets/star_icon_128523.svg);
+  width: 35px;
+  height: 35px;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  background-size: 20px;
+}
+
+.statistic-button {
+  background-image: url(../../assets/darts-icon.svg);
+  width: 35px;
+  height: 35px;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  background-size: 20px;
+  display: inline-block; /* Строчно-блочный элемент */
+  position: relative;
+}
+
+.studied {
+  background-color: var(--smoke);
+}
+
+.difficult {
+  background-color: yellow;
+}
+
+.line {
+  width: 20px;
+}
+
+
+.area-learn-difficult {
+  padding-top: 12px;
+  // display: inline-flex;
+  flex-direction: column;
+}
+
+.audio-button {
+  background-color:var(--one);
+  border-radius: 35px;
+  border: 1px solid white;
+  cursor: pointer;
+  text-decoration: none;
+  width: 28px;
+  height: 28px;
+  background-image: url(../../assets/audio.svg);
+  background-size:18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 2px;
+}
+
+.audio-button:hover,
+.audio-button:active {
+  background-color:var(--smoke);
+  border-radius: 35px;
+  border: 1px solid var(--tundora);
+  text-decoration: none;
+  
+}
+
+.english-words {
+  // margin-right: 10px;
+  // margin-left: 10px;
+  width: 100%;
+}
+
+.russian-words {
+  width: 100%;
+  color: rgb(88, 86, 86);
+}
+
+.word,
+.word-example,
+.word-meaning {
+  padding-top: 15px;
+}
+
+.word {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.word-example {
+  font-style:italic;
+}
+
+.page-book {
+  background-color: var(--light-smoke);
+  
+}
+
+.button:disabled {
+  background: var(--tundora);
+  cursor: not-allowed;
+}
+
+.generator-button {
+  background:  var(--light-green-color)
+}
+
+.forms {
+  margin-bottom: 10px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.unit-controls {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: start;
+  align-items: center;
+}
+
+.units-text {
+  font-size: 28px;
+}
+
+.unit-button {
+  font-size: 18px;
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 10px ;
+  margin-right: 10px ; 
+  color: var(--voodoo);
+  border: 3px solid var(--tundora);
+  transition: .3s;
+  color: white;
+}
+
+.unit-1 {
+  background-color: var(--one) ; 
+}
+.unit-2 {
+  background-color: var(--two) ; 
+}
+.unit-3 {
+  background-color: var(--three) ; 
+}
+.unit-4 {
+  background-color: var(--four) ; 
+}
+.unit-5 {
+  background-color: var(--five) ; 
+}
+.unit-6 {
+  background-color: var(--six) ; 
+}
+
+.pagination-book {
+  display: flex;
+  align-content: center;
+  position: sticky;
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  bottom: 0;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.button {
+  font-size: 10px;
+  background: var(--smoke) ;
+  border-radius: 4px;
+  padding: 3px;
+  min-width: 100px;
+  height: 20px;
+  text-transform: uppercase;
+  margin-left: 10px ;
+  margin-right: 10px ;
+  color: white;
+  
+}
+
+.button:hover {
+  background: var(--rhino) ;
+}
+
+.button-active {
+  background: var(--voodoo);
+}
+
+.hidden {
+  display: none;
+}
+
+.game-controls {
+  display: flex;
+  background-color: #2b346223;
+  padding: 10px;
+  border-radius: 20px;
+  margin-right: 15px;
+}
+.audio-game,
+.sprint-game {
+  display: block;
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 10px ;
+  margin-right: 10px ; 
+  border: 3px solid var(--tundora);
+  transition: .3s;
+}
+
+.audio-game {
+  background-image: url(../../assets/headphone.svg);
+  background-size:30px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.sprint-game {
+  background-image: url(../../assets/sports.svg);
+  background-size:30px;
+  background-repeat: no-repeat;
+  background-position: center;
+}

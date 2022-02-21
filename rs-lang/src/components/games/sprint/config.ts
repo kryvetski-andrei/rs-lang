@@ -1,0 +1,16 @@
+export const sprintPageId = 'sprint';
+export const timerClassName = 'timer';
+export const scoreClassName = 'score';
+export const wordTranslation = 'word-translate-container';
+export const rightAnswersContainerClassName = 'right-answers';
+export const wrongAnswersContainerClassName = 'wrong-answers';
+export const resultNavigationButtons = 'result-navigation-buttons';
+export const resultsContainerClassName = 'results-container';
+export const toSchoolbookButtonClassName = 'to-schoolbook';
+export const playAgainButtonClassName = 'play-again';
+export const trueAnswerClassName = 'true';
+export const falseAnswerClassName = 'false';
+export const TIMER_DURATION = 30000;
+export const TIMER_INTERVAL = 1000;
+export const MAX_WORDS_COUNT = 20;
+export const RESULT_ICON_SIZE = '20';

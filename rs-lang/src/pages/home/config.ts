@@ -1,0 +1,1 @@
+export const homePageId = 'home';

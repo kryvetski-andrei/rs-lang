@@ -1,0 +1,47 @@
+.daily-games-stat__wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.daily-audio-call-games-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:burlywood;
+  padding: 15px;
+  border-radius: 10px;
+  gap: 15px;
+  h3 {
+    text-align: center;
+  }
+}
+.daily-sprint-games-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: cadetblue;
+  padding: 15px;
+  border-radius: 10px;
+  gap: 15px;
+  h3 {
+    text-align: center;
+  }
+}
+.daily-audio-call-games-stat__new-words-per-day {
+  text-align: center;
+  font-size: 80px;
+}
+.daily-audio-call-games-stat__longest-streak {
+  text-align: center;
+  font-size: 80px;
+}
+
+.daily-sprint-games-stat__new-words-per-day {
+  text-align: center;
+  font-size: 80px;
+}
+.daily-sprint-games-stat__longest-streak {
+  text-align: center;
+  font-size: 80px;
+}

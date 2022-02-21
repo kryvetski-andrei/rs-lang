@@ -1,4 +1,4 @@
-import { getUserWord, getUserWords } from '../../../utilities/api';
+import { getUserWords } from '../../../utilities/api';
 
 export const isUserWord = async (gameWordId: string, userId: string) => {
   const userWords = await getUserWords(userId);

@@ -9,11 +9,10 @@ import { setAnswer, showCurrentPair } from './utils/gamePlay';
 import { getWordsForGame } from '../utils/getWordsForGame';
 import { IResults } from '../../../interfaces';
 import { setResults } from '../utils/setResults';
-import { initialStatistics } from '../utils/initialStatistics';
 import { setNewWord, setSprintBestSeries, setSprintGameStat } from '../utils/setStatistics';
 import { TokenService } from '../../../utilities/api/utilities';
 import { getUserStatistics } from '../../../utilities/api';
-
+import { cleanUp } from '../../../utilities/cleanUp';
 
 const startGameSprintGame = async () => {
   let currentPair = 0;

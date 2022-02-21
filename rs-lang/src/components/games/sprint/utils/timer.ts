@@ -16,5 +16,8 @@ const stopTimer = (intervalID: NodeJS.Timer) => {
 
 export const setCountdown = () => {
   const intervalID = setInterval(changeTimer, TIMER_INTERVAL);
+  window.addEventListener('hashchange', () => {
+    clearInterval(intervalID);
+  });
   stopTimer(intervalID);
 };

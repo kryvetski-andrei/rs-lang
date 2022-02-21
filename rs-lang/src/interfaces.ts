@@ -41,6 +41,7 @@ export interface IWord {
 
 export interface IPair {
   id: string;
+  audio: string;
   wordsPair: string;
   isPairRight: boolean;
   userCorrect?: boolean;

@@ -13,7 +13,6 @@ export const showCurrentPair = ({ wordsPair }: IPair) => {
 
 export const setAnswer = async (wordPair: IPair, userAnswer: string) => {
   const { id, word } = wordPair;
-  console.log(wordPair);
   const { userId } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`) as string);
   wordPair.userCorrect = String(wordPair.isPairRight) === userAnswer;
   await setLearnStatus(wordPair, userId, id, word);

@@ -10,11 +10,6 @@ export const setLearnStatus = async (
   word: string
 ) => {
   if (wordPair.userCorrect) {
-    console.log(wordPair.userCorrect);
-    console.log(userId);
-    console.log(wordId);
-    console.log(word);
-
     const learnOption = { difficulty: markOfNot, optional: { learn: markOfLearnedWord, word } };
     if (await isUserWord(wordId, userId)) {
       const { optional } = await getUserWord(userId, wordId);

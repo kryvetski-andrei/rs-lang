@@ -86,7 +86,11 @@ function init(parentDOMElement: HTMLElement) {
   parentDOMElement.appendChild(renderer.domElement);
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.addEventListener('change', render);
+  // controls.addEventListener('change', render);
+  controls.autoRotate = true;
+  controls.enableRotate = false;
+  controls.enablePan = false;
+  controls.enableZoom = false;
 
   // const hlight = new AmbientLight(0x404040, 100);
   // scene.add(hlight);
@@ -141,21 +145,12 @@ function init(parentDOMElement: HTMLElement) {
     books.scale.set(0.7,0.7,0.7);
     scene.add(gltf.scene);
     animate();
-    document.addEventListener('mousemove', onMouseMove)
-   console.log(books, 'boo')
   })
 
   function animate() {
     renderer.render(scene,camera);
+    controls.update();
     requestAnimationFrame(animate);
-  }
-
-
-  function onMouseMove( event: any ) {
-
-    mouse.x = ( event.clientX - windowHalf.x );
-    mouse.y = ( event.clientY - windowHalf.x );
-  
   }
 }
 

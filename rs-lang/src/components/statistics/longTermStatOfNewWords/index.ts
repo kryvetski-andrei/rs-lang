@@ -1,6 +1,6 @@
 import { renderMarkup } from '../../../utilities/renderMarkup';
 
-import { longTermStatOfLearnedWordsMarkup } from './markup';
+import { longTermStatOfNewWordsMarkup } from './markup';
 
 import { Chart, registerables, ChartItem } from 'chart.js';
 import { generateChartDaysPoints, getDaysInMonth } from '../utilities';
@@ -9,31 +9,31 @@ import { TokenService } from '../../../utilities/api/utilities';
 
 Chart.register(...registerables);
 
-export const mountLongTermStatOfLearnedWordsDOMElement = async (parentDOMElement: HTMLElement) => {
-  renderMarkup(parentDOMElement, longTermStatOfLearnedWordsMarkup);
+export const mountLongTermStatOfNewWordsDOMElement = async (parentDOMElement: HTMLElement) => {
+  renderMarkup(parentDOMElement, longTermStatOfNewWordsMarkup);
   const userId = TokenService.getUser().userId;
   const userStatistics = (await getUserStatistics(userId));
   console.log(userStatistics, 'stataaaaaaaaaaaaaa')
   // const learnedWordPerDay = userStatistics.optional.leanedWords.words;
   // console.log(learnedWordPerDay)
-  const ctx = document.getElementById('long-term-stat-of-learned-words');
+  const ctx = document.getElementById('long-term-stat-of-new-words');
  
   const labels = generateChartDaysPoints();
-  console.log(gener(labels, userStatistics.optional.learnedWordsPerDay))
-  console.log(labels, 'labels')
+
   const data = {
     labels: labels,
     datasets: [{
-      label: 'Количество изученных слов',
-      data: gener(labels, userStatistics.optional.learnedWordsPerDay),
+      label: 'Количество новых слов',
+      data: gener(labels, userStatistics.optional.newWordsPerDay),
       fill: true,
-      borderColor: 'green',
-      tension: 0.1
+      borderColor: 'yellow',
+      tension: 0.1,
+      backgroundColor: 'yellow'
     },
   ]
   };
   const myChart = new Chart(ctx as ChartItem, {
-    type: 'line',
+    type: 'bar',
     data: data,
     options: {
       responsive: true,
@@ -44,7 +44,7 @@ export const mountLongTermStatOfLearnedWordsDOMElement = async (parentDOMElement
         },
         title: {
           display: true,
-          text: 'График увеличение общего количества изученных слов'
+          text: 'График количества новых слов за каждый день изучения'
         }
       },
       hover: {

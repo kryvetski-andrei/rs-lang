@@ -11,6 +11,8 @@ import { IResults } from '../../../interfaces';
 import { setResults } from '../utils/setResults';
 import { initialStatistics } from '../utils/initialStatistics';
 import { setNewWord, setSprintBestSeries, setSprintGameStat } from '../utils/setStatistics';
+import { TokenService } from '../../../utilities/api/utilities';
+import { getUserStatistics } from '../../../utilities/api';
 
 const startGameSprintGame = async () => {
   let currentPair = 0;
@@ -25,23 +27,29 @@ const startGameSprintGame = async () => {
   setCountdown();
   const wordPairs = generatePairs(await getWordsForGame());
   showCurrentPair(wordPairs[currentPair]);
-  setTimeout(() => {
+  setTimeout(async () => {
+    const userId = TokenService.getUser().userId;
+    const userStatistics = await getUserStatistics(userId);
     showResults(wordPairs, sprintContainer);
-    setSprintBestSeries(initialStatistics, sprintRsults);
+    setSprintBestSeries(userStatistics, sprintRsults);
     currentPair = 0;
-    console.log(initialStatistics);
   }, TIMER_DURATION);
-  document.body.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', ({ target }) => {
+  document.body.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', async ({ target }) => {
+    const userId = TokenService.getUser().userId;
+    const userStatistics = await getUserStatistics(userId);
+
     if ((target as Element).tagName === 'BUTTON') {
       setAnswer(wordPairs[currentPair], (target as Element).className);
       setResults(sprintRsults, wordPairs[currentPair]);
-      setNewWord(initialStatistics, wordPairs[currentPair]);
-      setSprintGameStat(initialStatistics, wordPairs[currentPair]);
+      setNewWord(userStatistics, wordPairs[currentPair]);
+      setSprintGameStat(userStatistics, wordPairs[currentPair]);
       currentPair += 1;
       showCurrentPair(wordPairs[currentPair]);
       console.log(sprintRsults);
     }
+    console.log(userStatistics, 'user stata')
   });
+
 };
 
 export const mountSprintPageDOMElement = (parentDOMElement: HTMLElement) => {

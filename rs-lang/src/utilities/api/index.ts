@@ -12,25 +12,25 @@ import {
 import { TokenService } from './utilities';
 
 //TODO MOVE THIS INITIAL TO SOME CONFIG ON HIGHT LEVEL
-const initialStatistics = {
+export const initialStatistics = {
   learnedWords: 0,
   optional: {
-    newWords: {
-      '01.01.2001': []
+    newWordsPerDay: {
+      '01.01.2001': [],
     },
     learnedWordsPerDay: {
       '01.01.2001': [],
     },
     audioCallGameStat: {
       longestSeries: 0,
-      words: []
+      words: [],
     },
-    springGameStat: {
-      longestSeries: 0, 
-      words: []
+    sprintGameStat: {
+      longestSeries: 0,
+      words: [],
     },
-  }
-}
+  },
+};
 
 export const getNewTokens = async (userId: string) => {
   const { refreshToken } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
@@ -254,6 +254,28 @@ export const deleteUserWord = async (userId: string, wordId: string) => {
 export const getUserAggregatedHardWords = async (userId: string) => {
   const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
   const filter = '{ "$and": [{ "userWord.difficulty": "hard" }] }';
+  const response = await fetch(`${usersPath}/${userId}/${aggregatedWords}?filter=${filter}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+  if (response.status === 401) {
+    await getNewTokens(userId);
+    await getUserAggregatedHardWords(userId);
+    return;
+  }
+
+  const aggregatedHardWordsData = await response.json();
+
+  return aggregatedHardWordsData;
+};
+
+export const getUserAggregatedWordsForGame = async (userId: string) => {
+  const { token } = JSON.parse(localStorage.getItem(`${userDataLocalStorage}`)!);
+  const filter = '{"$and":[{"userWord.optional.learn":"learn"}]}';
   const response = await fetch(`${usersPath}/${userId}/${aggregatedWords}?filter=${filter}`, {
     method: 'GET',
     headers: {

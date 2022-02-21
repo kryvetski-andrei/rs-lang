@@ -11,7 +11,7 @@ import {
 } from './config';
 import { TokenService } from './utilities';
 
-//TODO MOVE THIS INITIAL TO SOME CONFIG ON HIGHT LEVEL
+// TODO MOVE THIS INITIAL TO SOME CONFIG ON HIGHT LEVEL
 export const initialStatistics = {
   learnedWords: 0,
   optional: {
@@ -23,11 +23,11 @@ export const initialStatistics = {
     },
     audioCallGameStat: {
       longestSeries: 0,
-      words: [],
+      // words: [],
     },
     sprintGameStat: {
       longestSeries: 0,
-      words: [],
+      // words: [],
     },
   },
 };
@@ -72,7 +72,7 @@ export const createUser = async (body: IUser) => {
     body: JSON.stringify(body),
   });
   const userData = await response.json();
-  console.log(userData, 'data')
+
   return userData;
 };
 
@@ -91,12 +91,12 @@ export const loginUser = async (user: IUser) => {
 
   return userData;
 };
-//TODO CRATE NEW FUNC TO ADD STAT INITIAL 
+// TODO CRATE NEW FUNC TO ADD STAT INITIAL
 export const authorizeUser = async ({ name, email, password }: IUser) => {
   const user = await createUser({ name, email, password });
   const userId = user.id;
   await loginUser({ email, password });
-  updateUserStatistics(userId, initialStatistics)
+  updateUserStatistics(userId, initialStatistics);
 };
 
 export const logoutUser = () => {

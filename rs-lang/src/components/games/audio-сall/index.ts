@@ -25,7 +25,7 @@ import { getUserStatistics } from '../../../utilities/api';
 import { TokenService } from '../../../utilities/api/utilities';
 
 const setAnswer = async (currentQuestion: IAudioCallQuestion, target: HTMLElement) => {
-  const userId = TokenService.getUser().userId;
+  const { userId } = TokenService.getUser();
   const userStatistics = await getUserStatistics(userId);
 
   currentQuestion.userCorrect = currentQuestion.rightAnswer === target.innerHTML;
@@ -60,7 +60,7 @@ const startGameAudioGame = async () => {
   });
 
   audioCallContainer.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', async ({ target }) => {
-    const userId = TokenService.getUser().userId;
+    const { userId } = TokenService.getUser();
     const userStatistics = await getUserStatistics(userId);
     const targetElement = target as HTMLElement;
 
@@ -71,10 +71,9 @@ const startGameAudioGame = async () => {
         currentQuestion = 0;
         showResults(quizVariants, audioCallContainer);
         setAudioCallBestSeries(userStatistics, audioCallRsults);
-        console.log(userStatistics);
       } else {
         setAnswer(quizVariants[currentQuestion], targetElement);
-        setResults(audioCallRsults, quizVariants[currentQuestion]);
+        setResults(audioCallRsults, quizVariants[currentQuestion]); // NOT WORKING?
         showRightAnswer(quizVariants[currentQuestion], targetElement);
         disableQuestionVariants();
         currentQuestion += 1;
@@ -82,7 +81,6 @@ const startGameAudioGame = async () => {
           changeQuestion(quizVariants, currentQuestion);
         }, 3000);
       }
-      console.log(audioCallRsults);
     }
   });
 };

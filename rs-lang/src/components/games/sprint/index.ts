@@ -28,14 +28,14 @@ const startGameSprintGame = async () => {
   const wordPairs = generatePairs(await getWordsForGame());
   showCurrentPair(wordPairs[currentPair]);
   setTimeout(async () => {
-    const userId = TokenService.getUser().userId;
+    const { userId } = TokenService.getUser();
     const userStatistics = await getUserStatistics(userId);
     showResults(wordPairs, sprintContainer);
     setSprintBestSeries(userStatistics, sprintRsults);
     currentPair = 0;
   }, TIMER_DURATION);
   document.body.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', async ({ target }) => {
-    const userId = TokenService.getUser().userId;
+    const { userId } = TokenService.getUser();
     const userStatistics = await getUserStatistics(userId);
 
     if ((target as Element).tagName === 'BUTTON') {
@@ -45,11 +45,8 @@ const startGameSprintGame = async () => {
       setSprintGameStat(userStatistics, wordPairs[currentPair]);
       currentPair += 1;
       showCurrentPair(wordPairs[currentPair]);
-      console.log(sprintRsults);
     }
-    console.log(userStatistics, 'user stata')
   });
-
 };
 
 export const mountSprintPageDOMElement = (parentDOMElement: HTMLElement) => {

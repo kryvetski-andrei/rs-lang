@@ -11,18 +11,17 @@ export const getWordsForGame = async (): Promise<any> => {
   }
 };
 
-
 const initialStatistics = {
   learnedWords: 0,
   optional: {
     newWords: [],
     audioCallGameStat: {
       longestSeries: 0,
-      words: []
+      words: [],
     },
     springGameStat: {
-      longestSeries: 0, 
-      words: []
+      longestSeries: 0,
+      words: [],
     },
-  }
-}
+  },
+};

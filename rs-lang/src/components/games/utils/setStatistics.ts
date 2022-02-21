@@ -3,7 +3,7 @@ import { updateUserStatistics } from '../../../utilities/api';
 import { TokenService } from '../../../utilities/api/utilities';
 
 export const setNewWord = (statistic: any, { id }: IAudioCallQuestion | IPair) => {
-  const userId = TokenService.getUser().userId;
+  const { userId } = TokenService.getUser();
   const { newWordsPerDay } = statistic.optional;
   const date = new Date().toLocaleDateString('ru-RU');
   if (!newWordsPerDay[date]) {
@@ -16,11 +16,11 @@ export const setNewWord = (statistic: any, { id }: IAudioCallQuestion | IPair) =
   }
 
   delete statistic.id;
-  updateUserStatistics(userId, statistic)
+  updateUserStatistics(userId, statistic);
 };
 
 export const setAudioCallGameStat = (statistic: any, { id, userCorrect }: IAudioCallQuestion) => {
-  const userId = TokenService.getUser().userId;
+  const { userId } = TokenService.getUser();
   const { audioCallGameStat } = statistic.optional;
   if (!audioCallGameStat[id]) {
     audioCallGameStat[id] = [userCorrect];
@@ -29,11 +29,11 @@ export const setAudioCallGameStat = (statistic: any, { id, userCorrect }: IAudio
   }
 
   delete statistic.id;
-  updateUserStatistics(userId, statistic)
+  updateUserStatistics(userId, statistic);
 };
 
 export const setSprintGameStat = (statistic: any, { id, userCorrect }: IPair) => {
-  const userId = TokenService.getUser().userId;
+  const { userId } = TokenService.getUser();
   const { sprintGameStat } = statistic.optional;
 
   if (!sprintGameStat[id]) {
@@ -43,27 +43,27 @@ export const setSprintGameStat = (statistic: any, { id, userCorrect }: IPair) =>
   }
 
   delete statistic.id;
-  updateUserStatistics(userId, statistic)
+  updateUserStatistics(userId, statistic);
 };
 
 export const setAudioCallBestSeries = (statistic: any, { bestSeries }: IResults) => {
-  const userId = TokenService.getUser().userId;
+  const { userId } = TokenService.getUser();
   const { audioCallGameStat } = statistic.optional;
   if (audioCallGameStat.longestSeries < bestSeries) {
     audioCallGameStat.longestSeries = bestSeries;
   }
 
   delete statistic.id;
-  updateUserStatistics(userId, statistic)
+  updateUserStatistics(userId, statistic);
 };
 
 export const setSprintBestSeries = (statistic: any, { bestSeries }: IResults) => {
-  const userId = TokenService.getUser().userId;
+  const { userId } = TokenService.getUser();
   const { sprintGameStat } = statistic.optional;
   if (sprintGameStat.longestSeries < bestSeries) {
     sprintGameStat.longestSeries = bestSeries;
   }
 
   delete statistic.id;
-  updateUserStatistics(userId, statistic)
+  updateUserStatistics(userId, statistic);
 };

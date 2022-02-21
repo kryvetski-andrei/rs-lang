@@ -1,4 +1,5 @@
 
+import { mountDailyGamesStatDOMElement } from '../../components/statistics/dailyGamesStat';
 import { mountLongTermStatOfLearnedWordsDOMElement } from '../../components/statistics/longTermStatOfLearnedWords';
 import { mountLongTermStatOfNewWordsDOMElement } from '../../components/statistics/longTermStatOfNewWords';
 import { renderMarkup } from '../../utilities/renderMarkup';
@@ -10,6 +11,7 @@ export const mountStatisticsPageDOMElement = (parentDOMElement: HTMLElement) => 
 
   const statisticsPageDOMElement = document.body.querySelector(`#${statisticsPageId}`) as HTMLElement;
   
+  mountDailyGamesStatDOMElement(statisticsPageDOMElement);
   mountLongTermStatOfLearnedWordsDOMElement(statisticsPageDOMElement);
   mountLongTermStatOfNewWordsDOMElement(statisticsPageDOMElement);
 };

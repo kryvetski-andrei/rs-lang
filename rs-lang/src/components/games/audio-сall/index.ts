@@ -51,7 +51,6 @@ const startGameAudioGame = async () => {
   };
   let currentQuestion = 0;
   const quizVariants = generateQuizQuestions(await getWordsForGame());
-  console.log(quizVariants);
   const audioCallContainer = document.body.querySelector(`#${audioCallPageId}`) as HTMLElement;
   renderAudioCallGame(audioCallContainer, quizVariants, currentQuestion);
 

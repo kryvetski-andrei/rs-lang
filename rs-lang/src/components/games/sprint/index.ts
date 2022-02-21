@@ -11,6 +11,10 @@ import { IResults } from '../../../interfaces';
 import { setResults } from '../utils/setResults';
 import { initialStatistics } from '../utils/initialStatistics';
 import { setNewWord, setSprintBestSeries, setSprintGameStat } from '../utils/setStatistics';
+import { cleanUp } from '../../../utilities/cleanUp';
+import { getNewTokens, getUserAggregatedHardWords } from '../../../utilities/api';
+import { userDataLocalStorage, usersPath, aggregatedWords } from '../../../utilities/api/config';
+
 
 const startGameSprintGame = async () => {
   let currentPair = 0;
@@ -19,8 +23,11 @@ const startGameSprintGame = async () => {
     bestSeries: 0,
     currentSeries: 0,
   };
+  const ustest = JSON.parse(localStorage.getItem('userData') as string);
+  console.log(ustest);
+  // const test = getUserAggregatedHardWords();
   const sprintContainer = document.body.querySelector(`#${sprintPageId}`) as HTMLElement;
-  sprintContainer.innerHTML = '';
+  cleanUp(sprintContainer);
   renderMarkup(sprintContainer, sprintGameMarkup);
   setCountdown();
   const wordPairs = generatePairs(await getWordsForGame());

@@ -6,10 +6,11 @@ export const generatePairs = (wordsData: Array<IWord>): Array<IPair> => {
   const wordsPpairs: Array<IPair> = [];
   wordsData.forEach(({ id, audio, word, wordTranslate }, index) => {
     if (Math.random() < 0.5) {
-      wordsPpairs.push({ id, audio, wordsPair: `${word} — ${wordTranslate}`, isPairRight: true });
+      wordsPpairs.push({ id, word, audio, wordsPair: `${word} — ${wordTranslate}`, isPairRight: true });
     } else {
       wordsPpairs.push({
         id,
+        word,
         audio,
         wordsPair: `${word} — ${getRandomTranslation(wordsData, index)}`,
         isPairRight: false,

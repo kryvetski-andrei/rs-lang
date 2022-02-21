@@ -23,9 +23,6 @@ const startGameSprintGame = async () => {
     bestSeries: 0,
     currentSeries: 0,
   };
-  const ustest = JSON.parse(localStorage.getItem('userData') as string);
-  console.log(ustest);
-  // const test = getUserAggregatedHardWords();
   const sprintContainer = document.body.querySelector(`#${sprintPageId}`) as HTMLElement;
   cleanUp(sprintContainer);
   renderMarkup(sprintContainer, sprintGameMarkup);

@@ -1,4 +1,4 @@
-import { mountWrapBookDOMElement } from '../../components/schoolbook';
+import { mountWrapBookDOMElement, rerenderPagination } from '../../components/schoolbook';
 import { createCardsOfBook } from '../../components/schoolbook/createCardsOfWord';
 import { addPagesAndUnitsLocalStorage } from '../../components/schoolbook/localStorageOfBook';
 import { startGames } from '../../components/schoolbook/startGames';
@@ -12,10 +12,10 @@ export const mountSchoolbookPageDOMElement = (parentDOMElement: HTMLElement) => 
   renderMarkup(parentDOMElement, schoolbookPageMarkup);
 
   addPagesAndUnitsLocalStorage();
-
+ 
   const schoolbookPageElement = document.body.querySelector(`#${schoolbookPageId}`) as HTMLElement;
   mountWrapBookDOMElement(schoolbookPageElement);
-
+  rerenderPagination()
   startGames();
   createCardsOfBook();
   updateStatePageOfBook();

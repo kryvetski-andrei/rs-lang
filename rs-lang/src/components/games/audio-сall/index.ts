@@ -20,12 +20,11 @@ import { TokenService } from '../../../utilities/api/utilities';
 const setAnswer = async (currentQuestion: IAudioCallQuestion, target: HTMLElement) => {
   const { userId } = TokenService.getUser();
   const userStatistics = await getUserStatistics(userId);
+
   currentQuestion.userCorrect = currentQuestion.rightAnswer === target.innerHTML;
-  const { userCorrect } = currentQuestion;
   playAnswerSound(currentQuestion.userCorrect);
   setNewWord(userStatistics, currentQuestion);
   setAudioCallGameStat(userStatistics, currentQuestion);
-  console.log(currentQuestion.userCorrect);
 };
 
 const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {

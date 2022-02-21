@@ -1,9 +1,11 @@
-import { IAudioCallQuestion } from '../../../interfaces';
+import { IAudioCallQuestion, IResults } from '../../../interfaces';
 import { renderMarkup } from '../../../utilities/renderMarkup';
 import { answersContainerClassName, startGameButton } from '../config';
 import { showResults } from '../sprint/utils/endGame';
 import { getWordsForGame } from '../utils/getWordsForGame';
 import { playAnswerSound } from '../utils/playAnswerSound';
+import { setAudioCallBestSeries, setAudioCallGameStat, setNewWord } from '../utils/setStatistics';
+import { setResults } from '../utils/setResults';
 import { mountQuestionVariantsDOMelements } from './components/pushVariants';
 import { renderAudioCallGame } from './components/renderAudioCallGame';
 import { showRightAnswer } from './components/showRightAnswer';
@@ -18,10 +20,18 @@ import { audioCallPageMarkup } from './markup';
 import { disableQuestionVariants } from './utils/disableButtons';
 import { generateQuizQuestions } from './utils/generateQuestions';
 import { playAudio } from './utils/playAudio';
+import { initialStatistics } from '../utils/initialStatistics';
+import { getUserStatistics } from '../../../utilities/api';
+import { TokenService } from '../../../utilities/api/utilities';
 
 const setAnswer = async (currentQuestion: IAudioCallQuestion, target: HTMLElement) => {
+  const { userId } = TokenService.getUser();
+  const userStatistics = await getUserStatistics(userId);
+
   currentQuestion.userCorrect = currentQuestion.rightAnswer === target.innerHTML;
   playAnswerSound(currentQuestion.userCorrect);
+  setNewWord(userStatistics, currentQuestion);
+  setAudioCallGameStat(userStatistics, currentQuestion);
 };
 
 const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion: number) => {
@@ -31,6 +41,11 @@ const changeQuestion = (quizVariants: Array<IAudioCallQuestion>, currentQuestion
 };
 
 const startGameAudioGame = async () => {
+  const audioCallRsults: IResults = {
+    words: [],
+    bestSeries: 0,
+    currentSeries: 0,
+  };
   let currentQuestion = 0;
   const quizVariants = generateQuizQuestions(await getWordsForGame());
   const audioCallContainer = document.body.querySelector(`#${audioCallPageId}`) as HTMLElement;
@@ -45,14 +60,20 @@ const startGameAudioGame = async () => {
   });
 
   audioCallContainer.querySelector(`.${answersContainerClassName}`)?.addEventListener('click', async ({ target }) => {
+    const { userId } = TokenService.getUser();
+    const userStatistics = await getUserStatistics(userId);
     const targetElement = target as HTMLElement;
+
     if (targetElement.tagName === 'BUTTON') {
       if (currentQuestion === QUESTIONS_COUNT - 1) {
         setAnswer(quizVariants[currentQuestion], targetElement);
+        setResults(audioCallRsults, quizVariants[currentQuestion]);
         currentQuestion = 0;
         showResults(quizVariants, audioCallContainer);
+        setAudioCallBestSeries(userStatistics, audioCallRsults);
       } else {
         setAnswer(quizVariants[currentQuestion], targetElement);
+        setResults(audioCallRsults, quizVariants[currentQuestion]); // NOT WORKING?
         showRightAnswer(quizVariants[currentQuestion], targetElement);
         disableQuestionVariants();
         currentQuestion += 1;

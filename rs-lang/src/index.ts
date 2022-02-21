@@ -15,6 +15,7 @@ import { urlParser } from './utilities/urlParser';
 import { IRoute } from './interfaces';
 
 import { pagesHash, pageWrapperId, sidebarWrapperId } from './config';
+import { updateUserStatistics } from './utilities/api';
 
 const pageWrapperDOMElement = document.getElementById(pageWrapperId) as HTMLElement;
 const sidebarWrapperDOMElement = document.getElementById(sidebarWrapperId) as HTMLElement;

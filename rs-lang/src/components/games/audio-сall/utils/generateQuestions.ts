@@ -15,8 +15,9 @@ const getRandomVariants = (wordsData: Array<IWord>, rightAnswer: string, index: 
 
 export const generateQuizQuestions = (wordsData: Array<IWord>): Array<IAudioCallQuestion> => {
   shuffle(wordsData);
-  return wordsData.splice(0, QUESTIONS_COUNT).map(({ audio, wordTranslate, word }, index) => {
+  return wordsData.splice(0, QUESTIONS_COUNT).map(({ id, audio, wordTranslate, word }, index) => {
     return {
+      id,
       audio,
       rightAnswer: wordTranslate,
       variants: getRandomVariants(wordsData, wordTranslate, index),

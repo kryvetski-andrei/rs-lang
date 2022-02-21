@@ -19,5 +19,22 @@
   .profile__wrapper {
     padding: 0.5rem 1rem;
     cursor: pointer;
+    .rsschool-link {
+      width: 80px;
+      display: block;
+      margin: 0 auto;
+    }
+    .devs {
+      width: 100%;
+      ul {
+        display: flex!important;
+        justify-content: space-between;
+      }
+    }
+    .link {
+      display: block;
+      width: 30px;
+      height: 30px;
+    }
   }
 }

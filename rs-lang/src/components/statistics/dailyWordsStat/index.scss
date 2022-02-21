@@ -1,0 +1,36 @@
+.daily-words-stat {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color:lightseagreen;
+  padding: 15px;
+  border-radius: 15px;
+  max-width: 810px;
+  margin: 0 auto;
+
+  .wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.daily-words-stat__new-words-per-day {
+  font-size: 80px;
+  text-align: center;
+}
+
+.daily-words-stat__learned-words-per-day {
+  font-size: 80px;
+  text-align: center;
+}
+
+.daily-words-stat__wrapper {
+  text-align: center;
+  h3 {
+    margin: 40px 0;
+  }
+}
+

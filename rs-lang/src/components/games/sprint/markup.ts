@@ -22,7 +22,6 @@ export const sprintPageMarkup = (): string => {
     <h2 class="game-title">Спринт</h2>
     <p class="game-description">Спринт - это игра, в которой вам будет отображаться пара слово-перевод, а вы должны будете указывать: верный перевод или неверный. Игра на скорость, и на неё вам дается 30 секунд!</p>
     <p class="game-description">Выбирать варианты ответа можно как и нажатием на кнопки "Верно"/"Неверно", так и нажатием клавишь стрелок</p>
-    <p class="game-description">Выбирете сложность</p>
     ${localStorage.getItem('previousPage') === 'games' ? getDificultSelectionContainer : ''}
     <button class="start-game">Начать</button>
   </section>
@@ -51,7 +50,7 @@ export const sprintGameMarkup = `
   <div class="${scoreClassName}">Score: 0</div>
   <div class="${wordTranslation}">Слово - перевод</div>
   <div class="${answersContainerClassName}">
-    <button class="${trueAnswerClassName}">Неверно</button>
-    <button class="${falseAnswerClassName}">Верно</button>
+    <button class="${falseAnswerClassName}">Неверно</button>
+    <button class="${trueAnswerClassName}">Верно</button>
   </div>
 `;

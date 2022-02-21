@@ -4,5 +4,5 @@ import { statisticsPageId } from './config';
 import './index.scss';
 
 export const statisticsPageMarkup = `
-  <section id="${statisticsPageId}" class="${pageClassName}">statistics</section>
+  <section id="${statisticsPageId}" class="${pageClassName}"></section>
 `;

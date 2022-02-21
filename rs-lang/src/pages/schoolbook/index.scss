@@ -1,28 +1,50 @@
 :root {
   --disable: #555;
-  --light-smoke:#e6dfec;
+  --light-smoke:#ffffff;
   --smoke:#9b8bab;
   --rhino: #2b3462;
   --voodoo: #4b3961;
   --tundora:#4b4849;
-  --one: #cbb7db;
-  --two: #e68cd3;
-  --three: #af7fd6;
-  --four: #8a137a;
-  --five: #7d15d3;
-  --six: #1d2b66;
+  --one: #ff000039;
+  --two: #ff73005c;
+  --three: #ffe10051;
+  --four: #6aff0050;
+  --five: #15d36a3e;
+  --six: #0156ff36;
+  --seven: #024384;
 }
 
 #schoolbook {
   background-color: var(--light-smoke);
 }
 
+.book-words {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.cards-wrap {
+  margin: 0 auto;
+  display: grid;
+
+  width: 90%;
+  //Using auto-fill and auto-fit
+  grid-template-rows: repeat(2, minmax(150px, min-content));
+  grid-template-columns: repeat(auto-fill,100px);
+  grid-template-columns: repeat(auto-fit,100px);
+  grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+
+  // grid-auto-rows: 150px;
+  gap: 20px;
+}
+
 .card-book {
   border: 3px solid white;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .learn-button {
@@ -73,9 +95,13 @@
   width: 20px;
 }
 
+.image {
+  object-fit: cover;
+}
+
 .area-learn-difficult{
   padding-top: 12px;
-  display: inline-flex;
+  // display: inline-flex;
   flex-direction: column;
 }
 
@@ -104,13 +130,13 @@
 }
 
 .english-words {
-  margin-right: 10px;
-  margin-left: 10px;
-  width: 28vw;
+  // margin-right: 10px;
+  // margin-left: 10px;
+  width: 100%;
 }
 
 .russian-words {
-  width: 34vw;
+  width: 100%;
   color: rgb(88, 86, 86);
 }
 
@@ -204,7 +230,7 @@
   padding-top: 10px;
   bottom: 0;
   justify-content: center;
-  backdrop-filter: blur(70px);
+  backdrop-filter: blur(5px);
 }
 
 .button {
@@ -233,6 +259,13 @@
   display: none;
 }
 
+.game-controls {
+  display: flex;
+  background-color: #2b346223;
+  padding: 10px;
+  border-radius: 20px;
+  margin-right: 15px;
+}
 .audio-game,
 .sprint-game {
   display: block;

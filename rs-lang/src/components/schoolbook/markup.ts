@@ -28,17 +28,17 @@ export const wrapOfBook = `
 `;
 
 export const cardOfBook = (wordData: IWord, numericOfUnit: string) => `
-  <div class="card-book" id="${wordData.id}" data-name="${wordData.word}">
-    <div class="line unit-${numericOfUnit}"></div>
-    <img src="${apiBaseURL}/${wordData.image}" class="image" width="195" height="130" alt="img-${wordData.word}">
-    <div class="english-words">
+  <div class="card-book unit-${numericOfUnit}"" id="${wordData.id}" data-name="${wordData.word}">
+ 
+    <img src="${apiBaseURL}/${wordData.image}" class="image" width="100%" height="150" alt="img-${wordData.word}">
+    <div class="english-words book-words">
       <div class="word">${wordData.word} ${wordData.transcription} 
       <button class="audio-button audio-button-${wordData.word} " data-audio="${wordData.audio}" title="Произношение"></button>
       </div>
       <div class="word-meaning">${wordData.textMeaning}</div>
       <div class="word-example">${wordData.textExample}</div>
     </div>
-    <div class="russian-words">
+    <div class="russian-words book-words">
       <div class="word"> ${wordData.wordTranslate} </div>
       <div class="word-meaning">${wordData.textMeaningTranslate}</div>
       <div class="word-example">${wordData.textExampleTranslate}</div>

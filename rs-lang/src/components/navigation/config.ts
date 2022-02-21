@@ -56,7 +56,7 @@ export const navItems: INavItem[] = [
     icon: schoolbookIcon,
   },
   {
-    name: 'Словарь',
+    name: 'Сложные слова',
     path: pagesHash.dictionary,
     icon: dictionaryIcon,
   },

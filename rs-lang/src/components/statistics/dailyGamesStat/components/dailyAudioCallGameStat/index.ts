@@ -63,7 +63,7 @@ export const mountDailyAudioCallGameStatDOMElement = async (parentDOMElement: HT
         {
           label: 'My First Dataset',
           data: [persentOfCorrectAnswers, persentOfIncorrectAnswers],
-          backgroundColor: ['green', 'red'],
+          backgroundColor: ['#ff6702', '#843602'],
         },
       ],
     },
